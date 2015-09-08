@@ -84,7 +84,16 @@ the OBDD representation. \tbr
 \section{Representation Basics}
 \label{sec:representation-basics}
 
-\tbd
+\textit{Binary decision diagrams} (\textit{BDDs}) have been well studied since
+Lee~\cite{LEE59} and especially Akers~\cite{AKERS78} introduced them. BDDs
+represent a Boolean function $f$ as an acyclic, directed graph (DAG). Nodes
+represent variables and have one incoming and two outgoing edges, each of which
+denotes the variable evaluates to 0 (left) or 1 (right), respectively. There exist
+two \textit{terminal} nodes, denoted \textbf{0} (\textbf{False}) and \textbf{1}
+(\textbf{True}), which represent the result of $f$. To evaluate $f$ for a given
+variable assignment, one just follows the path for the respective variable values
+and the terminal nodes one exists is the result.
+\tbr
 
 \subsection{Reducing and Ordering BDDs}
 \label{subsec:reducing-and-ordering-bdds}
