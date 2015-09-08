@@ -24,14 +24,50 @@ This paper serves as a survey on \textit{ordered binary Decision diagrams}
 (\textit{OBDDs}). It provides an overview of the representation of OBDDs, the
 operations which can be applied efficiently, some aspects when implementing them
 as well as their limitations and how to probably overcome them by using
-alternative representations. No new results or insights are provided.  [TO BE
-REVISED].
+alternative representations. No new results or insights are provided.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
 
-Tbd.
+In computer-aided design (CAD) as well as other domains like artificial
+intelligence or combinatorics, many problems can be formulated as Boolean
+functions. These Boolean functions then can be represented symbolically using the
+\textit{Binary Decision Diagrams} (\textit{BDDs}) introduced by Lee\cite{LEE59}
+and Akers\cite{AKERS78} in 1959 and 1978, respectively.
+
+In 1986 Bryant\cite{BRYANT86} published a paper of high impact, describing a
+\textit{reduced} and \textit{ordered} class of BDDs, so-called \textit{ROBDDs}
+(\textit{Reduced Ordered} BDDs) but in literature mostly referred to as
+\textit{OBDDs}. OBDDs represent Boolean functions in a \textit{canonical}
+form. This results in a compact form and very efficient tests for some properties,
+e.g. satisfiability or equivalence\cite{BRYANT86}.
+
+Already in the inital paper describing OBDDs, the importance of the variable
+ordering was highlighted. Only if the variable ordering is chosen properly, it
+will result in a small graph (OBDD) and, in turn, in more efficient testing.
+
+Nonetheless representing Boolean function using OBDDs has some drawbacks. Classes
+of Boolean functions exist for which the size of the graph grows exponentially,
+e.g. integer multiplication~\cite{BRYANT86, BRYANT91, WOELFEL01}.
+
+These limitations of OBDDs motivated researchers to introduce other
+representations which e.g. relax the ordering or change the interpretation of
+nodes~\cite{BRYANT95}. Such representations may be beneficial for some classes
+of Boolean functions but mostly suffer from losing the canonical form and hence
+the desirable properties OBDDs are famous for.
+
+This paper serves as survey on symbolic Boolean function manipulation using OBDDs.
+The following section describes the representation of Boolean function through
+BDDs as well as OBDDs. The third section describes operations which can be applied
+to OBDDs efficiently. No source is provided but those can be looked up in the
+corresponding papers easily (references are provided for each algorithm).
+Section~\ref{sec:implementation-aspects} describes aspects one has to take into
+account when implementing an OBDD package, such as what data structures to use
+or how to deal with the problem of variable ordering. Limitations of the OBDD
+representation are described in the subsequent section. The last section
+discusses alternative representations to possibly overcome the limitations of
+the OBDD representation.
 
 \section{Representation Basics}
 \label{sec:representation-basics}
@@ -72,7 +108,7 @@ Tbd.
 
 \noindent
 \par
-LEE59\cite{LEE59}, AKERS78\cite{AKERS78}, BRYANT86\cite{BRYANT86},
+BRYANT86\cite{BRYANT86},
 \par
 BRACE90\cite{BRACE90}, BRYANT91\cite{BRYANT91}, BRYANT92\cite{BRYANT92},
 \par
