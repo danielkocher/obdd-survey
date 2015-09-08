@@ -3,6 +3,7 @@
 \usepackage{balance}
 
 \newcommand{\tbr}{\textbf{[TO BE REVISED]}}
+\newcommand{\tbd}{\textbf{[TO BE DONE]}}
 
 \begin{document}
 
@@ -50,15 +51,15 @@ Already in the inital paper describing OBDDs, the importance of the variable
 ordering was highlighted. Only if the variable ordering is chosen properly, it
 will result in a small graph (OBDD) and, in turn, in more efficient testing.
 
-Nonetheless representing Boolean function using OBDDs has some drawbacks. Classes
+Nonetheless representing Boolean functions using OBDDs has some drawbacks. Classes
 of Boolean functions exist for which the size of the graph grows exponentially,
 e.g. integer multiplication~\cite{BRYANT86, BRYANT91, WOELFEL01}.
 
 These limitations of OBDDs motivated researchers to introduce other
-representations which e.g. relax the ordering or change the interpretation of
-nodes~\cite{BRYANT95}. Such representations may be beneficial for some classes
-of Boolean functions but mostly suffer from losing the canonical form and hence
-the desirable properties OBDDs are famous for.
+representations which e.g. relax the ordering~\cite{BRYANT95} or change the
+interpretation of nodes~\cite{BRYANT95}~\cite{ANDERSEN97}. Such representations
+may be beneficial for some classes of Boolean functions but mostly suffer from
+losing the canonical form and hence the desirable properties OBDDs are famous for.
 
 This paper serves as survey on symbolic Boolean function manipulation using OBDDs.
 The following section describes the representation of Boolean functions through
@@ -77,49 +78,45 @@ the OBDD representation.
 \section{Representation Basics}
 \label{sec:representation-basics}
 
-Tbd.
+\tbd
 
 \subsection{Reducing and Ordering BDDs}
 \label{subsec:reducing-and-ordering-bdds}
 
-Tbd.
+\tbd
 
 \section{Efficient Operations}
 \label{sec:efficient-operations}
 
-Tbd.
+\tbd
 
 \section{Implementational Aspects}
 \label{sec:implementation-aspects}
 
-Tbd.
+\tbd
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
 
-Tbd.
+\tbd
 
 \section{Limitations}
 \label{sec:limitations}
 
-Tbd.
+\tbd
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
 
-Tbd.
+\tbd
 
 \section{Citations (temporary)}
 
 \noindent
 \par
-BRYANT86\cite{BRYANT86},
+BRACE90\cite{BRACE90}, BRYANT92\cite{BRYANT92},
 \par
-BRACE90\cite{BRACE90}, BRYANT91\cite{BRYANT91}, BRYANT92\cite{BRYANT92},
-\par
-RUDELL93\cite{RUDELL93}, BRYANT95\cite{BRYANT95}, BOLLIG96\cite{BOLLIG96},
-\par
-ANDERSEN97\cite{ANDERSEN97}, WOELFEL01\cite{WOELFEL01}
+RUDELL93\cite{RUDELL93}, BOLLIG96\cite{BOLLIG96}
 
 
 % balance columns on last page
