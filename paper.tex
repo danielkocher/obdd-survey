@@ -1,16 +1,26 @@
 \documentclass{vldb}
+
+%%% Packages
 \usepackage{graphicx}
 \usepackage{balance}
+\usepackage{tikz}
+\usepackage{standalone}
+\usepackage{subfigure}
 
+%%% TikZ libraries
+\usetikzlibrary{backgrounds, positioning, decorations.pathreplacing, calc, fit}
+\usetikzlibrary{shapes}
+
+%%% Macros
 \newcommand{\tbr}{\textbf{[TO BE REVISED]}}
 \newcommand{\tbd}{\textbf{[TO BE DONE]}}
 
 \begin{document}
 
-% title
+% Title
 \title{A Survey on Ordered Binary Decision Diagrams}
 
-% author(s)
+% Author(s)
 \numberofauthors{1}
 
 \author{
@@ -89,10 +99,26 @@ Lee~\cite{LEE59} and especially Akers~\cite{AKERS78} introduced them. BDDs
 represent a Boolean function $f$ as an acyclic, directed graph (DAG). Nodes
 represent variables and have one incoming and two outgoing edges, each of which
 denotes the variable evaluates to 0 (left) or 1 (right), respectively. Whenever
-the result of $f$ is fixed, an edge points to one of the constants 0 or 1.
-To evaluate $f$ for a given variable assignment, one just follows the path for
-the respective variable values. As soon as the path ends up in a constant, i.e. 
-0 or 1, this constant value is the result of the variable assignment.
+the result of $f$ is fixed, an edge points to one of the constant functions
+\textbf{0} or \textbf{1}. To evaluate $f$ for a given variable assignment, one
+just follows the path for the respective variable values. As soon as the path
+ends up in a constant, i.e. \textbf{0} or \textbf{1}, this is the result of the
+variable assignment. Akers~\cite{AKERS78} already provided some techniques to
+simplify the BDD representation such as combining equivalent nodes.
+
+\begin{figure}[ht]
+    \centering
+    \subfigure[BDD \newline $f=(A \land B) \lor (B \land C)$.]{
+        \includestandalone[height = 3cm]{figs/bdd}
+        \label{fig:bdd}
+    }
+    \hskip1cm
+    \subfigure[OBDD \newline $f=(A \land B) \lor (B \land C)$.]{
+        \includestandalone[height = 3cm]{figs/obdd}
+        \label{fig:obdd}
+    }
+\end{figure}
+
 \tbr
 
 \subsection{Reducing and Ordering BDDs}
