@@ -88,11 +88,11 @@ the OBDD representation. \tbr
 Lee~\cite{LEE59} and especially Akers~\cite{AKERS78} introduced them. BDDs
 represent a Boolean function $f$ as an acyclic, directed graph (DAG). Nodes
 represent variables and have one incoming and two outgoing edges, each of which
-denotes the variable evaluates to 0 (left) or 1 (right), respectively. There exist
-two \textit{terminal} nodes, denoted \textbf{0} (\textbf{False}) and \textbf{1}
-(\textbf{True}), which represent the result of $f$. To evaluate $f$ for a given
-variable assignment, one just follows the path for the respective variable values
-and the terminal node at the end is the result.
+denotes the variable evaluates to 0 (left) or 1 (right), respectively. Whenever
+the result of $f$ is fixed, an edge points to one of the constants 0 or 1.
+To evaluate $f$ for a given variable assignment, one just follows the path for
+the respective variable values. As soon as the path ends up in a constant, i.e. 
+0 or 1, this constant value is the result of the variable assignment.
 \tbr
 
 \subsection{Reducing and Ordering BDDs}
