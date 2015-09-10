@@ -103,26 +103,39 @@ the result of $f$ is fixed, an edge points to one of the constant functions
 \textbf{0} or \textbf{1}. To evaluate $f$ for a given variable assignment, one
 just follows the path for the respective variable values. As soon as the path
 ends up in a constant, i.e. \textbf{0} or \textbf{1}, this is the result of the
-variable assignment. Akers~\cite{AKERS78} already provided some techniques to
-simplify the BDD representation such as combining equivalent nodes.
+corresponding variable assignment. Akers~\cite{AKERS78} already provided some
+techniques to simplify the BDD representation such as combining equivalent nodes.
+
+Figure~\ref{fig:bdd} shows an example of a BDD representing the Boolean function
+$f=(A \land B) \lor (B \land C)$. To simplify the graphs, the diagram style of
+Bryant~\cite{BRYANT92} is reused, i.e. edge labels are skipped. Instead dashed
+and solid lines are used to represent the value of the decision variable to be 0
+and 1, respectively. This diagram style is used throughout this paper.
 
 \begin{figure}[ht]
     \centering
-    \subfigure[BDD \newline $f=(A \land B) \lor (B \land C)$.]{
+    \subfigure[BDD]{
         \includestandalone[height = 3cm]{figs/bdd}
         \label{fig:bdd}
     }
     \hskip1cm
-    \subfigure[OBDD \newline $f=(A \land B) \lor (B \land C)$.]{
+    \subfigure[OBDD]{
         \includestandalone[height = 3cm]{figs/obdd}
         \label{fig:obdd}
     }
+    \caption{BDD and OBDD of $f=(A \land B) \lor (B \land C)$.}
 \end{figure}
+
+However, Bryant~\cite{BRYANT86} introduced some restrictions concerning the
+ordering of the so-called \textit{decision variables} represented by the vertices
+of the BDD. Furthermore, Bryant\cite{BRYANT86} was able to derive a reduced
+representation of BDDs providing the DAG in a canonical form. The following two
+subsections cover the details.
 
 \tbr
 
-\subsection{Reducing and Ordering BDDs}
-\label{subsec:reducing-and-ordering-bdds}
+\subsection{From BDDs to OBDDs}
+\label{subsec:from-bdds-to-obdds}
 
 \tbd
 
@@ -139,7 +152,13 @@ simplify the BDD representation such as combining equivalent nodes.
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
 
-\tbd
+\begin{figure}[ht]
+    \centering
+    \includestandalone[height = 3cm]{figs/min-obdd}
+    \label{fig:min-obdd}
+    \caption{Minimized OBDD (optimal).}
+\end{figure}
+\tbr
 
 \section{Limitations}
 \label{sec:limitations}
