@@ -18,17 +18,17 @@
     \node[terminal, below left = 1.5 and 1 of C] (0) {\huge{0}};
     \node[terminal, below right = 1.5 and 1 of C] (1) {\huge{1}};
 
-    \draw[dashed] (A.south west) -- (Bl.north east);
-    \draw (A.south east) -- (Br.north west);
+    \draw[thick, dashed] (A.south west) -- (Bl.north east);
+    \draw[thick] (A.south east) -- (Br.north west);
 
-    \draw[dashed] (Bl.south east) -- (C.north west);
-    \draw (Bl.south) -- (0.north);
+    \draw[thick, dashed] (Bl.south east) -- (C.north west);
+    \draw[thick] (Bl.south) -- (0.north);
 
-    \draw[dashed] (Br.south west) -- (C.north east);
-    \draw (Br.south) -- (1.north);
+    \draw[thick, dashed] (Br.south west) -- (C.north east);
+    \draw[thick] (Br.south) -- (1.north);
 
-    \draw[dashed] (C.south west) -- (0.north);
-    \draw (C.south east) -- (1.north);
+    \draw[thick, dashed] (C.south west) -- (0.north);
+    \draw[thick] (C.south east) -- (1.north);
 \end{tikzpicture}
 
 \end{document}

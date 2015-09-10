@@ -13,23 +13,23 @@
     \tikzstyle{inner} = [draw, solid, circle, thick];
 
     \node[inner] at (0, 0) {\huge{A}}
-    child[dashed] {
+    child[thick, dashed] {
         node[inner] {\huge{B}}
         child {
             node[inner] {\huge{C}}
-            child[dashed] { node {\textbf{\huge{0}}} }
-            child[solid] { node {\textbf{\huge{1}}} }
+            child[thick, dashed] { node {\textbf{\huge{0}}} }
+            child[thick, solid] { node {\textbf{\huge{1}}} }
         }
-        child[solid] { node {\textbf{\huge{0}}} }
+        child[thick, solid] { node {\textbf{\huge{0}}} }
     }
-    child[solid] {
+    child[thick, solid] {
         node[inner] {\huge{B}}
-        child[dashed] {
+        child[thick, dashed] {
             node[inner] {\huge{C}}
-            child[dashed] { node {\textbf{\huge{0}}} }
-            child[solid] { node {\textbf{\huge{1}}} }
+            child[thick, dashed] { node {\textbf{\huge{0}}} }
+            child[thick, solid] { node {\textbf{\huge{1}}} }
         }
-        child[solid] { node {\textbf{\huge{1}}} }
+        child[thick, solid] { node {\textbf{\huge{1}}} }
     };
 \end{tikzpicture}
 

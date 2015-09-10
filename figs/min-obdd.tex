@@ -17,14 +17,14 @@
     \node[terminal, below = 2 of C] (0) {\huge{0}};
     \node[terminal, below = 2 of A] (1) {\huge{1}};
 
-    \draw[dashed] (B.south west) -- (C.north east);
-    \draw (B.south east) -- (A.north west);
+    \draw[thick, dashed] (B.south west) -- (C.north east);
+    \draw[thick] (B.south east) -- (A.north west);
 
-    \draw[dashed] (C.south) -- (0.north);
-    \draw (C.south east) -- (1.north west);
+    \draw[thick, dashed] (C.south) -- (0.north);
+    \draw[thick] (C.south east) -- (1.north west);
 
-    \draw[dashed] (A.south west) -- (0.north east);
-    \draw (A.south) -- (1.north);
+    \draw[thick, dashed] (A.south west) -- (0.north east);
+    \draw[thick] (A.south) -- (1.north);
 \end{tikzpicture}
 
 \end{document}
