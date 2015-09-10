@@ -106,7 +106,7 @@ ends up in a constant, i.e. \textbf{0} or \textbf{1}, this is the result of the
 corresponding variable assignment. Akers~\cite{AKERS78} already provided some
 techniques to simplify the BDD representation such as combining equivalent nodes.
 
-Figure~\ref{fig:bdd} shows an example of a BDD representing the Boolean function
+Figure~\ref{subfig:bdd} shows an example of a BDD representing the Boolean function
 $f=(A \land B) \lor (B \land C)$. To simplify the graphs, the diagram style of
 Bryant~\cite{BRYANT92} is reused, i.e. edge labels are skipped. Instead dashed
 and solid lines are used to represent the value of the decision variable to be 0
@@ -116,15 +116,15 @@ and 1, respectively. This diagram style is used throughout this paper.
     \centering
     \subfigure[BDD]{
         \includestandalone[height = 3cm]{figs/bdd}
-        \label{fig:bdd}
+        \label{subfig:bdd}
     }
     \hskip1cm
     \subfigure[OBDD]{
         \includestandalone[height = 3cm]{figs/obdd}
-        \label{fig:obdd}
+        \label{subfig:obdd}
     }
-    \label{fig:bdd-and-obdd}
     \caption{BDD and OBDD of $f=(A \land B) \lor (B \land C)$.}
+    \label{fig:bdd-and-obdd}
 \end{figure}
 
 However, Bryant~\cite{BRYANT86} introduced some restrictions concerning the
@@ -135,7 +135,7 @@ representation of BDDs providing the DAG in a canonical form: the
 to as \textit{OBDD}, even by Bryant himself). In this paper, the terms ROBDD and
 OBDD are used synonymously.
 
-Figure~\ref{fig:obdd} shows one possible ROBDD representation of
+Figure~\ref{subfig:obdd} shows one possible ROBDD representation of
 $f$. The following section covers the details of how
 to derive the OBDD representation from a BDD. \tbr
 
@@ -204,23 +204,23 @@ be redirected to $lo(n)$ and $n$ can be deleted afterwards.
     \centering
     \subfigure[]{
         \includestandalone[height = 3cm]{figs/redundant-nonterminals-before}
-        \label{fig:redundant-nonterminals-before}
+        \label{subfig:redundant-nonterminals-before}
     }
     \hskip1cm
     \subfigure[]{
         \includestandalone[height = 3cm]{figs/redundant-nonterminals-after}
-        \label{fig:redundant-nonterminals-after}
+        \label{subfig:redundant-nonterminals-after}
     }
-    \label{fig:redundant-nonterminals}
     \caption{Eliminating redundant nonterminal nodes.}
+    \label{fig:redundant-nonterminals}
 \end{figure}
 
-Figure~\ref{fig:obdd} shows the result of applying the first two transformation
-rules to the BDD shown in Figure~\ref{fig:bdd}. The third rule is shown
+Figure~\ref{subfig:obdd} shows the result of applying the first two transformation
+rules to the BDD shown in Figure~\ref{subfig:bdd}. The third rule is shown
 in Figure~\ref{fig:redundant-nonterminals}.
-Figure~\ref{fig:redundant-nonterminals-before} shows a BDD with redundant
+Figure~\ref{subfig:redundant-nonterminals-before} shows a BDD with redundant
 nonterminal nodes (both \textbf{B}'s, in essence) and
-Figure~\ref{fig:redundant-nonterminals-after} shows the equivalent OBDD without
+Figure~\ref{subfig:redundant-nonterminals-after} shows the equivalent OBDD without
 redundant nonterminals. \tbr
 
 \section{Efficient Operations}
