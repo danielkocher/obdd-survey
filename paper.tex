@@ -141,7 +141,21 @@ to derive the OBDD representation from a BDD. \tbr
 \subsection{From BDDs to OBDDs}
 \label{subsec:from-bdds-to-obdds}
 
- \tbd
+As the name suggests, \textit{Reduced} Ordered Binary Decision Diagrams are a 
+minimized representation of BDDs. Furthermore, the decision variables are ordered
+consistently. More formally, for any node $\upsilon$ and their respective children
+$\omega_1$ and $\omega_2$, a total ordering is imposed, i.e.
+$var(\upsilon) < var(\omega_1)$ and $var(\upsilon) < var(\omega_2)$, respectively,
+where $var(x)$ denotes the label of node $x$.
+
+This \textit{variable ordering} affects the efficiency of the symbolic
+manipulation because different variable orderings, in general, produce different
+OBDDs. In the worst case, this will result in exponential complexity for bad
+orderings. Nevertheless, as will be described in Section~\ref{sec:limitations},
+there exist classes of functions for which the OBDD complexity is exponential
+regardless of which variable ordering is chosen.
+
+\tbr
 
 \section{Efficient Operations}
 \label{sec:efficient-operations}
