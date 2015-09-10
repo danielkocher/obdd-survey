@@ -123,6 +123,7 @@ and 1, respectively. This diagram style is used throughout this paper.
         \includestandalone[height = 3cm]{figs/obdd}
         \label{fig:obdd}
     }
+    \label{fig:bdd-and-obdd}
     \caption{BDD and OBDD of $f=(A \land B) \lor (B \land C)$.}
 \end{figure}
 
@@ -196,10 +197,31 @@ The third and last transformation rule deals with completely redundant nontermin
 nodes. Intuitively, this rule should be straightforward: any node having the same
 child on all outgoing edges is redundant because the actual value of the variable
 does not change the result of the function. More formally, a nonterminal node $n$
-is redundant if $lo(n) = hi(n)$. Then, all incoming edges of $n$ can be redirected
-to $lo(n)$ and $n$ can be deleted afterwards.
+is redundant if and only if $lo(n) = hi(n)$. Then, all incoming edges of $n$ can
+be redirected to $lo(n)$ and $n$ can be deleted afterwards.
 
-\tbr
+\begin{figure}[ht]
+    \centering
+    \subfigure[]{
+        \includestandalone[height = 3cm]{figs/redundant-nonterminals-before}
+        \label{fig:redundant-nonterminals-before}
+    }
+    \hskip1cm
+    \subfigure[]{
+        \includestandalone[height = 3cm]{figs/redundant-nonterminals-after}
+        \label{fig:redundant-nonterminals-after}
+    }
+    \label{fig:redundant-nonterminals}
+    \caption{Eliminating redundant nonterminal nodes.}
+\end{figure}
+
+Figure~\ref{fig:obdd} shows the result of applying the first two transformation
+rules to the BDD shown in Figure~\ref{fig:bdd}. The third rule is shown
+in Figure~\ref{fig:redundant-nonterminals}.
+Figure~\ref{fig:redundant-nonterminals-before} shows a BDD with redundant
+nonterminal nodes (both \textbf{B}'s, in essence) and
+Figure~\ref{fig:redundant-nonterminals-after} shows the equivalent OBDD without
+redundant nonterminals. \tbr
 
 \section{Efficient Operations}
 \label{sec:efficient-operations}
