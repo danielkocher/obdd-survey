@@ -10,26 +10,26 @@
     level 1/.style = { sibling distance = 16em, level distance = 8em },
     level 2/.style = { sibling distance = 8em, level distance = 8em }
 ]
-    \tikzstyle{inner} = [draw, circle, thick];
+    \tikzstyle{inner} = [draw, solid, circle, thick];
 
     \node[inner] at (0, 0) {\huge{A}}
-    child {
+    child[dashed] {
         node[inner] {\huge{B}}
         child {
             node[inner] {\huge{C}}
-            child { node {\textbf{\huge{0}}} }
-            child { node {\textbf{\huge{1}}} }
+            child[dashed] { node {\textbf{\huge{0}}} }
+            child[solid] { node {\textbf{\huge{1}}} }
         }
-        child { node {\textbf{\huge{0}}} }
+        child[solid] { node {\textbf{\huge{0}}} }
     }
-    child {
+    child[solid] {
         node[inner] {\huge{B}}
-        child {
+        child[dashed] {
             node[inner] {\huge{C}}
-            child { node {\textbf{\huge{0}}} }
-            child { node {\textbf{\huge{1}}} }
+            child[dashed] { node {\textbf{\huge{0}}} }
+            child[solid] { node {\textbf{\huge{1}}} }
         }
-        child { node {\textbf{\huge{1}}} }
+        child[solid] { node {\textbf{\huge{1}}} }
     };
 \end{tikzpicture}
 
