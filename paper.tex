@@ -175,6 +175,29 @@ In other words, for any path starting at the root of an OBDD, if a path is
 followed until a terminal node is reached, the nonterminal nodes are traversed
 strictly in the variable ordering.
 
+\paragraph*{Reduction procedure}
+
+Bryant~\cite{BRYANT86, BRYANT92} described three transformation rules to reduce
+a graph such that it still represents the same function as before.
+
+For each constant function, there exists only a single terminal node representing
+it, e.g. for Boolean functions, only two terminal nodes exist, representing
+\textbf{0} and \textbf{1}, respectively. Hence, when transforming a given BDD,
+eliminate all but one terminal node for each constant function and redirect all
+edges accordingly, i.e. to the one remaining node for each constant function.
+
+There may be duplicate nonterminal nodes present in a given BDD. Formally, a node
+$d$ is a duplicate if $var(d) = var(n) \land lo(d) = lo(n) \land hi(d) = hi(n)$
+holds for any other node $n$. If this is the case, $d$ can be eliminated and all
+edges are redirected to $n$.
+
+The third and thus last transformation rule deals with completely redundant 
+nonterminal nodes. Intuitively, this rule should be straightforward: any node
+having the same child on all outgoing edges is redundant because the actual value
+of the variable does not change the result of the function. More formally, a
+nonterminal node $n$ is redundant if $lo(n) = hi(n)$. Then, all incoming edges
+of $n$ can be redirected to $lo(n)$ and $n$ can be deleted afterwards.
+
 \tbr
 
 \section{Efficient Operations}
