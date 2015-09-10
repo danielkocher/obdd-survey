@@ -155,6 +155,26 @@ orderings. Nevertheless, as will be described in Section~\ref{sec:limitations},
 there exist classes of functions for which the OBDD complexity is exponential
 regardless of which variable ordering is chosen.
 
+Before discussing the reduction procedure, some definitions are necessary. Here
+the original definitions of Bryant~\cite{BRYANT86, BRYANT91} are reused.
+
+A Boolean function can be represented as an OBDD, i.e. a rooted, directed,
+acyclic graph (DAG) with a set of nodes $V$ as well as a set of edges $E$. 
+
+There exist \textit{nonterminal} and \textit{terminal} nodes. Each
+\textit{nonterminal} node $n$ has its own label $var(n)$ as well as two edges,
+connecting it to its left $lo(n)\in V$ and right child $hi(n)\in V$, respectively. 
+Each \textit{terminal} node $t$ has a unique value $value(t)$, i.e. $value(t)$
+is a constant function (for Boolean functions \textbf{0} or \textbf{1}). Hence,
+for each constant function only a single terminal node exists.
+
+The following property has to hold for any nonterminal node $n$ in order to
+satisfy the ordering requirement of an OBDD:
+$var(n) < var(lo(n)) \land var(n) < var(hi(n))$.
+In other words, for any path starting at the root of an OBDD, if a path is
+followed until a terminal node is reached, the nonterminal nodes are traversed
+strictly in the variable ordering.
+
 \tbr
 
 \section{Efficient Operations}
