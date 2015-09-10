@@ -192,12 +192,12 @@ $d$ is a duplicate if $var(d) = var(n) \land lo(d) = lo(n) \land hi(d) = hi(n)$
 holds for any other node $n$. If this is the case, $d$ can be eliminated and all
 edges are redirected to $n$.
 
-The third and thus last transformation rule deals with completely redundant 
-nonterminal nodes. Intuitively, this rule should be straightforward: any node
-having the same child on all outgoing edges is redundant because the actual value
-of the variable does not change the result of the function. More formally, a
-nonterminal node $n$ is redundant if $lo(n) = hi(n)$. Then, all incoming edges
-of $n$ can be redirected to $lo(n)$ and $n$ can be deleted afterwards.
+The third and last transformation rule deals with completely redundant nonterminal
+nodes. Intuitively, this rule should be straightforward: any node having the same
+child on all outgoing edges is redundant because the actual value of the variable
+does not change the result of the function. More formally, a nonterminal node $n$
+is redundant if $lo(n) = hi(n)$. Then, all incoming edges of $n$ can be redirected
+to $lo(n)$ and $n$ can be deleted afterwards.
 
 \tbr
 
