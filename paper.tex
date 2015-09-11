@@ -235,7 +235,14 @@ be performed efficiently. \tbr
 \section{Operations}
 \label{sec:operations}
 
-\tbr
+Bryant's~\cite{BRYANT86, BRYANT92} main focus was to define algorithms performing
+symbolic operations on graphs representing Boolean functions. The most basic
+operation is \textit{Apply} which applys a given operation $op$, e.g. \texttt{AND},
+to two given functions $f_1$ and $f_2$, and returns the result of $f_1{ }op{ }f_2$.
+Another operation is \textit{Restrict}, restricting a given variable $x$ to a
+given (constant) value $c$, denoted $f_{x\leftarrow c}$. Furthermore, the
+operations \textit{Compose} and \textit{Satisfy} can be defined as graph
+algorithms. \tbr
 
 \section{Implementational Aspects}
 \label{sec:implementation-aspects}
@@ -251,7 +258,7 @@ be performed efficiently. \tbr
     \label{fig:min-obdd}
     \caption{Minimized OBDD (optimal).}
 \end{figure}
-\tbr
+\tbd
 
 \section{Limitations}
 \label{sec:limitations}
