@@ -353,7 +353,15 @@ The full pseudocode defined by Bryant can be found in~\cite[p. 685]{BRYANT86}. \
 \paragraph*{Compose}
 \mbox{} % workaround to get line break after paragraph
 
-\tbd
+This operation is merely based upon calls to \textit{Apply} and \textit{Restrict}.
+Utilizing \textit{Shannon's expansion}, Bryant~\cite{BRYANT86} formulated the
+composition of two functions $f_1$ and $f_2$ as
+\begin{center}
+$
+f_1|_{x=f_2}=
+f_2 \land f_1|_{x_i=1} \lor \overline{f_2} \land f_1|_{x_i=0}
+$
+\end{center}\tbr
 
 \paragraph*{Satisfy}
 \mbox{} % workaround to get line break after paragraph
