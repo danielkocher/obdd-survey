@@ -238,24 +238,30 @@ be performed efficiently. \tbr
 Bryant's~\cite{BRYANT86, BRYANT92} main focus was to define algorithms performing
 symbolic operations on graphs representing Boolean functions. The most basic
 operation is \textit{Apply} which applys a given operation $op$, e.g. \texttt{AND},
-to two given functions $f_1$ and $f_2$, and returns the result of $f_1{ }op{ }f_2$.
+to two given functions $f_1$ and $f_2$, and returns the result of $f_1\;op\;f_2$.
 Another operation is \textit{Restrict}, restricting a given variable $x$ to a
-given (constant) value $c$, denoted $f_{x\leftarrow c}$. Furthermore, the
+given (constant) value $c$, denoted $f|_{x\leftarrow c}$. Furthermore, the
 operations \textit{Compose} and \textit{Satisfy} can be defined as graph
 algorithms.
 
 The following paragraphs summarize those operations and their properties briefly.
+Implementation details are covered in Section~\ref{sec:implementation-aspects}.
+
+\paragraph*{Restrict}
+\mbox{} % workaround to get line break after paragraph
+
+\tbd
 
 \paragraph*{Apply}
 \mbox{} % workaround to get line break after paragraph
 
 Applies an operation $op$ to two given functions $f_1$ and $f_2$ and returns the
-resulting function $f_1{ }op{ }f_2$. This is the most intuitive function one would
+resulting function $f_1\;op\;f_2$. This is the most intuitive function one would
 expect when dealing with Boolean functions and it has some interesting properties
 too, i.e. the complement of $f_1$ can be computed by setting $f_2$ to \textbf{1}
 and $op$ to $\oplus$ (\texttt{XOR}). Moreover, the already mentioned functional
 equivalence can be tested by applying $\overline{\oplus}$ (\texttt{XNOR}) to
-$f_1$ and $f_2$ for all relevant cases. Therefore Bryant~\cite{BRYANT92} defined
+$f_1$ and $f_2$ for all relevant cases. Therefore, Bryant~\cite{BRYANT92} defined
 a function $d(x_1, \ldots, x_n)$ for \textit{Don't cares}:
 
 $d(x_1, \ldots, x_n)=
@@ -266,12 +272,55 @@ $d(x_1, \ldots, x_n)=
 $
 
 Using this function, one check if $f_1$ and $f_2$ are functionally equivalent by
-performing $(f_1\overline{\oplus}f_2)\lor d$. \tbr
+computing $(f_1\overline{\oplus}f_2)\lor d$. If the result is \textbf{1}, $f_1$
+and $f_2$ are functionally equivalent.
 
-\paragraph*{Restrict}
-\mbox{} % workaround to get line break after paragraph
+\textit{Apply} traverses the given graph depth-first, creating the resultant OBDD
+step by step. Starting from the roots $n_1$ and $n_2$, new nodes are created for
+each branching point of the graphs of $f_1$ and $f_2$, respectively.
 
-\tbd
+\textit{Shannon's expansion} forms the basis of the recursive
+algorithm~\cite{BRYANT86}:
+\begin{center}
+$
+f_1\;op\;f_2 =
+\overline{x} \cdot \left(f_1|_{x\leftarrow 0}\;op\;f_2|_{x\leftarrow 0}\right)
++ x \cdot \left(f_1|_{x\leftarrow 1}\;op\;f_2|_{x\leftarrow 1}\right)
+$
+\end{center}
+
+The recursive procedure then has three different cases. Note that a node is only
+created if no equivalent node is already present in the resultant graph.
+\begin{enumerate}
+    \item{
+        If $n_1$ and $n_2$ are both terminal nodes, then a terminal node
+        representing the value $value(n_1)\;op\;value(n_2)$ is added to the
+        resultant graph and the recursion terminates.
+    }
+    \item{
+        If either $n_1$ or $n_2$ is a nonterminal node, then:
+        \begin{enumerate}
+            \item{
+                If $var(n_1) = var(n_2)$, a node having $var(n_1)$ is created and
+                the procedure is applied recursively on $(lo(n_1), lo(n_2))$ and
+                $(hi(n_1), hi(n_2))$.
+            }
+            \item{
+                If $var(n_1)$ is a nonterminal and $n_2$ is eiter a terminal node
+                or $var(n_1) < var(n_2)$, a node having $var(n_1)$ is created and
+                the procedure is applied recursively on $(lo(n_1), n_2)$ and
+                $(hi(n_1), n_2)$.
+            }
+        \end{enumerate}
+    }
+\end{enumerate}
+
+By applying the three transformation rules of the reduction procedure in each
+step, \textit{Apply} generates a reduced graph immediately~\cite{BRYANT92}.
+
+There are some refinements when it comes to implementation. Those are covered in
+Section~\ref{sec:implementation-aspects} as well as the original paper of
+Bryant~\cite{BRYANT86, BRYANT92}. \tbr
 
 \paragraph*{Compose}
 \mbox{} % workaround to get line break after paragraph
