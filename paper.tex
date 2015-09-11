@@ -389,7 +389,23 @@ two function graphs. But this approach only applicable under restricted conditio
 \paragraph*{Satisfy}
 \mbox{} % workaround to get line break after paragraph
 
- \tbr
+In essence, Bryant~\cite{BRYANT86} described two operations, i.e.
+\textit{Satisfy-one} and \textit{Satisfy-all}, both operating on the satisfying
+set. As the name suggests, \textit{Satisfy-one} selects a single element and
+\textit{Satisfy-all} selects all elements from the satisfying set.
+
+\textit{Satisfy-one} traverses the OBDD depth-first and uses backtracking until
+a terminal node of the constant function \textbf{1} is encountered. If such a
+node is found, the corresponding Boolean function is satisfiable and true is
+returned. Furthermore, an array representing the satisfying variable assignment
+is assigned. The time complexity for a reduced graph is linear, i.e.
+$O(|V_f|)$~\cite{BRYANT86}.
+
+\textit{Satisfy-all} also traverses the OBDD depth-first. Every time the terminal
+node having value \textbf{1} is traversed, it is printed. The recursive procedure
+terminates as soon as the terminal node having value \textbf{0} is reached. This
+results in a time complexity of $O(|V_f| \cdot |S_f|)$, whereas $S_f$ denotes the
+satisfying set~\cite{BRYANT86}. \tbr
 
 \section{Implementational Aspects}
 \label{sec:implementational-aspects}
