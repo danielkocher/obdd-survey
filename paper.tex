@@ -422,7 +422,27 @@ to possibly approach the variable ordering problem and \textit{garbage collectio
 \subsection{Efficient Data Structures}
 \label{subsec:efficient-data-structures}
 
-\tbd
+\paragraph*{Hash Table}
+\mbox{} % workaround to get line break after paragraph
+
+Hash tables maintain \textit{key}-\textit{value}-pairs, returning the associated
+value for a given key in (amortized) constant time~\cite{BRACE90}.
+
+This is especially useful to refine \textit{Apply} in order to guarantee the time
+complexity of $O\left(|V_{f_1}| \cdot |V_{f_2}|\right)$. Using a hash table to
+match pairs of nodes ($n_1$, $n_2$) to a single node $m$, \textit{Apply} avoids
+making multiple recursive calls to equivalent pairs of nodes and thus avoids
+computing equivalent subgraphs multiple times. Therefore, before computing a
+subgraph, \textit{Apply} checks whether an entry is present for the given pair
+of nodes. If so, the associated value $m$ is used instead of computing the
+subgraph~\cite{BRYANT86, BRYANT92}.
+
+Moreover, hash tables are useful to generate a reduced graph directly from some
+operations by maintaing a hash table associating triples
+($var(n)$, $lo(n)$, $hi(n)$) with a single nonterminal node $n$. This is done for
+each nonterminal node $n$ generated while executing the
+operation~\cite{BRYANT92}.
+\tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
