@@ -96,15 +96,17 @@ the OBDD representation. \tbr
 
 \textit{Binary decision diagrams} (\textit{BDDs}) have been well studied since
 Lee~\cite{LEE59} and especially Akers~\cite{AKERS78} introduced them. BDDs
-represent a Boolean function $f$ as an acyclic, directed graph (DAG). Nodes
-represent variables and have one incoming and two outgoing edges, each of which
-denotes the variable evaluates to 0 (left) or 1 (right), respectively. Whenever
-the result of $f$ is fixed, an edge points to one of the constant functions
-\textbf{0} or \textbf{1}. To evaluate $f$ for a given variable assignment, one
-just follows the path for the respective variable values. As soon as the path
-ends up in a constant, i.e. \textbf{0} or \textbf{1}, this is the result of the
-corresponding variable assignment. Akers~\cite{AKERS78} already provided some
-techniques to simplify the BDD representation such as combining equivalent nodes.
+represent a Boolean function $f$ as an acyclic, directed graph (DAG). The function
+arguments may be omitted in some cases to keep the formulas simple, i.e. $f$
+denotes $f(x_1, \ldots, x_2)$. Nodes represent variables and have one incoming
+and two outgoing edges, each of which denotes the variable evaluates to 0 (left)
+or 1 (right), respectively. Whenever the result of $f$ is fixed, an edge points
+to one of the constant functions \textbf{0} or \textbf{1}. To evaluate $f$ for a
+given variable assignment, one just follows the path for the respective variable
+values. As soon as the path ends up in a constant, i.e. \textbf{0} or \textbf{1},
+this is the result of the corresponding variable assignment. Akers~\cite{AKERS78}
+already provided some techniques to simplify the BDD representation such as
+combining equivalent nodes.
 
 Figure~\ref{subfig:bdd} shows an example of a BDD representing the Boolean function
 $f=(A \land B) \lor (B \land C)$. To simplify the graphs, the diagram style of
