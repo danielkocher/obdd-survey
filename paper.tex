@@ -84,7 +84,7 @@ BDDs as well as OBDDs. It also highlights the advantages and disadvantages of th
 OBDD representation. The third section describes operations which can be applied
 to OBDDs efficiently. No source code is provided but those can be looked up in
 the corresponding papers easily (references are provided for each algorithm).
-Section~\ref{sec:implementation-aspects} describes aspects one has to take into
+Section~\ref{sec:implementational-aspects} describes aspects one has to take into
 account when implementing an OBDD package, such as what data structures to use
 or how to deal with the problem of variable ordering. Limitations of the OBDD
 representation are described in the subsequent section. The last section
@@ -247,12 +247,34 @@ operations \textit{Compose} and \textit{Satisfy} can be defined as graph
 algorithms.
 
 The following paragraphs summarize those operations and their properties briefly.
-Implementation details are covered in Section~\ref{sec:implementation-aspects}.
+Implementation details are covered in Section~\ref{sec:implementational-aspects}.
 
 \paragraph*{Restrict}
 \mbox{} % workaround to get line break after paragraph
 
-\tbd
+Although \textit{Apply} is the core operation, the \textit{Restrict} operation is
+discussed first, mainly because it is used within \textit{Apply}. Besides,
+\textit{Restrict} is straightforward and easy to understand.
+
+A variable $x$, argument of a function $f$, can be restricted to a given value
+$c$, denoted by $f|_{x\leftarrow c}$, as follows.
+
+Starting from the root $n$ of the OBDD representation of $f$ and traversing the
+OBDD depth-first, every node is checked for $var(n) = x$. This is done recursively
+on the given graph, generating the resultant graph This node represents
+the variable to be restricted. Now, there are two cases for $c$ to distinguish:
+\begin{enumerate}
+    \item{$c=0$: The incoming edge of $n$ is redirected to $lo(n)$.}
+    \item{$c=1$: The incoming edge of $n$ is redirected to $hi(n)$.}
+\end{enumerate}
+
+By applying the three transformation rules of the reduction procedure in each
+step, \textit{Restrict} generates a reduced graph immediately~\cite{BRYANT92}.
+
+This procedure has linear time complexity in the number of nodes, i.e. $O(|V|)$,
+assuming an efficient implementation (see
+Section~\ref{sec:implementational-aspects} for details)~\cite{BRYANT92}. 
+\tbr
 
 \paragraph*{Apply}
 \mbox{} % workaround to get line break after paragraph
@@ -317,12 +339,14 @@ created if no equivalent node is already present in the resultant graph.
     }
 \end{enumerate}
 
-By applying the three transformation rules of the reduction procedure in each
-step, \textit{Apply} generates a reduced graph immediately~\cite{BRYANT92}.
+To get a reduced graph immediately, the three transformation rules are utilized
+again for each step~\cite{BRYANT92}.
 
 There are some refinements when it comes to implementation. Those are covered in
-Section~\ref{sec:implementation-aspects} as well as the original paper of
-Bryant~\cite{BRYANT86, BRYANT92}. \tbr
+Section~\ref{sec:implementational-aspects} as well as the original paper of
+Bryant~\cite{BRYANT86, BRYANT92}.  However, assuming an efficient implementation,
+the time complexity can be bound to
+$O\left(|V_{f_1}| \cdot |V_{f_2}|\right)$~\cite{BRYANT86, BRYANT92}. \tbr
 
 \paragraph*{Compose}
 \mbox{} % workaround to get line break after paragraph
@@ -335,7 +359,7 @@ Bryant~\cite{BRYANT86, BRYANT92}. \tbr
 \tbd
 
 \section{Implementational Aspects}
-\label{sec:implementation-aspects}
+\label{sec:implementational-aspects}
 
 \tbd
 
