@@ -146,10 +146,10 @@ to derive the OBDD representation from a BDD. \tbr
 
 As the name suggests, \textit{Reduced} Ordered Binary Decision Diagrams are a 
 minimized representation of BDDs. Furthermore, the decision variables are ordered
-consistently. More formally, for any node $\upsilon$ and their respective children
-$\omega_1$ and $\omega_2$, a total ordering is imposed, i.e.
-$var(\upsilon) < var(\omega_1)$ and $var(\upsilon) < var(\omega_2)$, respectively,
-where $var(x)$ denotes the label of node $x$~\cite{BRYANT86, BRYANT92}.
+consistently. More formally, for any node $n$ and their respective children $m_1$
+and $m_2$, a total ordering is imposed, i.e. $var(n) < var(m_1)$ and
+$var(n) < var(m_2)$, respectively, where $var(x)$ denotes the label of node
+$x$~\cite{BRYANT86, BRYANT92}.
 
 This \textit{variable ordering} affects the efficiency of the symbolic
 manipulation because different variable orderings, in general, produce different
