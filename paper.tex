@@ -361,7 +361,23 @@ $
 f_1|_{x=f_2}=
 f_2 \land f_1|_{x_i=1} \lor \overline{f_2} \land f_1|_{x_i=0}
 $
-\end{center}\tbr
+\end{center}
+
+However, this would result in an algorithm having a time complexity of 
+$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|^2\right)$. Therefore, Bryant~\cite{BRYANT86}
+already proposed to extend the \textit{Apply} operation to support ternary
+operations and then use the equivalent \textit{if-then-else} (\textit{ITE})
+representation:
+\begin{center}
+$
+ITE\left(f_2, f_1|_{x_i=1}, f_1|_{x_i=0}\right) \equiv
+f_2 \land f_1|_{x_i=1} \lor \overline{f_2} \land f_1|_{x_i=0}
+$
+\end{center}
+
+\noindent
+The time complexity then improves to be
+$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86}. \tbr
 
 \paragraph*{Satisfy}
 \mbox{} % workaround to get line break after paragraph
