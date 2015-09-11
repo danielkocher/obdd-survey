@@ -221,7 +221,16 @@ The third rule is shown in Figure~\ref{fig:redundant-nonterminals}:
 \ref{subfig:redundant-nonterminals-before} shows a BDD with redundant
 nonterminal nodes (both B's, in essence) and
 \ref{subfig:redundant-nonterminals-after} shows the equivalent OBDD without
-redundant nonterminals. \tbr
+redundant nonterminals.
+
+Bryant already formally described an algorithm to transform an arbitrary graph
+into a reduced one~\cite[p. 683]{BRYANT86}. 
+
+OBDDs have one big advantage over other representations: their representation is
+\textit{canonical}. As a consequence, important tests can be performed on an OBDD
+in constant time, i.e. satisfiability and tautology tests. Moreover, OBDDs enable
+other tests, such as variable independence and functional equivalence tests, to
+be performed efficiently. \tbr
 
 \section{Efficient Operations}
 \label{sec:efficient-operations}
