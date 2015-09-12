@@ -256,11 +256,11 @@ Although \textit{Apply} is the core operation, the \textit{Restrict} operation i
 discussed first, mainly because it is used within \textit{Apply}. Besides,
 \textit{Restrict} is straightforward and easy to understand.
 
-A variable $x$, argument of a function $f$, can be restricted to a given value
-$c$, denoted by $f|_{x\leftarrow c}$, as follows.
+A variable $x_i$, argument of a function $f$, can be restricted to a given value
+$c$, denoted by $f|_{x_i\leftarrow c}$, as follows.
 
 Starting from the root $n$ of the OBDD representation of $f$ and traversing the
-OBDD depth-first, every node is checked for $var(n) = x$. This is done recursively
+OBDD depth-first, every node is checked for $var(n) = x_i$. This is done recursively
 on the given graph, generating the resultant graph This node represents
 the variable to be restricted. Now, there are two cases for $c$ to distinguish:
 \begin{enumerate}
@@ -308,9 +308,9 @@ each branching point of the graphs of $f_1$ and $f_2$, respectively.
 algorithm~\cite{BRYANT86}:
 \begin{center}
 $
-f_1\;op\;f_2 =
-\overline{x} \land \left(f_1|_{x\leftarrow 0}\;op\;f_2|_{x\leftarrow 0}\right)
-\lor x \land \left(f_1|_{x\leftarrow 1}\;op\;f_2|_{x\leftarrow 1}\right)
+f_1 op f_2 =
+\overline{x_i} \land \left(f_1|_{x_i\leftarrow 0}\;op\;f_2|_{x_i\leftarrow 0}\right)
+\lor x_i \land \left(f_1|_{x_i\leftarrow 1}\;op\;f_2|_{x_i\leftarrow 1}\right)
 $
 \end{center}
 
@@ -360,7 +360,7 @@ Utilizing \textit{Shannon's expansion}, Bryant~\cite{BRYANT86} formulated the
 composition of two functions $f_1$ and $f_2$ as
 \begin{center}
 $
-f_1|_{x=f_2}=
+f_1|_{x_i=f_2}=
 f_2 \land f_1|_{x_i=1} \lor \overline{f_2} \land f_1|_{x_i=0}
 $
 \end{center}
@@ -378,9 +378,13 @@ $
 \end{center}
 
 \noindent
+The ITE operator $ITE(x, y_1, y_2)$ chooses $y_1$ if $x$ evaluates to true and
+$y_2$ otherwise. Computing $ITE(x, y_1, y_2)$ is accomplished by utilizing the
+following recursive form:
+
 The time complexity then improves to be
-$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86}.
-~\cite[p. 686]{BRYANT86} lists Bryant's full pseudocode.
+$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86} when using the ITE
+operator.~\cite[p. 686]{BRYANT86} lists Bryant's full pseudocode.
 
 Bryant~\cite{BRYANT86} also described another, even more efficient way to compose
 two function graphs. But this approach only applicable under restricted conditions.
