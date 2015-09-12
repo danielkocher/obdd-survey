@@ -422,11 +422,13 @@ to possibly approach the variable ordering problem and \textit{garbage collectio
 \subsection{Efficient Data Structures}
 \label{subsec:efficient-data-structures}
 
-\paragraph*{Hash Table}
+\paragraph*{Hash Tables}
 \mbox{} % workaround to get line break after paragraph
 
 Hash tables maintain \textit{key}-\textit{value}-pairs, returning the associated
-value for a given key in (amortized) constant time~\cite{BRACE90}.
+value for a given key in (amortized) constant time. Collisions, i.e. equivalent
+value for different keys, are resolved by chaining all associated values in a 
+linked list~\cite{BRACE90}.
 
 This is especially useful to refine \textit{Apply} in order to guarantee the time
 complexity of $O\left(|V_{f_1}| \cdot |V_{f_2}|\right)$. Using a hash table to
@@ -442,7 +444,11 @@ operations by maintaing a hash table associating triples
 ($var(n)$, $lo(n)$, $hi(n)$) with a single nonterminal node $n$. This is done for
 each nonterminal node $n$ generated while executing the
 operation~\cite{BRYANT92}.
-\tbr
+
+There exists a special version of hash tables, so-called
+\textit{hash-based caches}, which do not resolve collisions, i.e. overwrite
+existing entries. \textit{Hash-based caches} issue a cache miss if a looked up
+element is not found. \tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
