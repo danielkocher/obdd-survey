@@ -447,8 +447,9 @@ operation~\cite{BRYANT92}.
 
 There exists a special version of hash tables, so-called
 \textit{hash-based caches}, which do not resolve collisions, i.e. overwrite
-existing entries. \textit{Hash-based caches} issue a cache miss if a looked up
-element is not found. \tbr
+existing entries, and issue a cache miss if a looked up element is not found.
+As will be seen, \textit{Hash-based caches} are useful to provide an efficient
+implementation of the ITE operator. \tbr
 
 \subsection{ITE Operator}
 \label{subsec:ite-operator}
