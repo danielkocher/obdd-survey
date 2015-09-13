@@ -365,7 +365,7 @@ f_2 \land f_1|_{x_i=1} \lor \overline{f_2} \land f_1|_{x_i=0}
 $
 \end{center}
 
-This would result in an algorithm having a worst case time complexity of 
+This would result in an algorithm having a worst-case time complexity of 
 $O\left(|V_{f_1}|^2 \cdot |V_{f_2}|^2\right)$. Therefore, Bryant~\cite{BRYANT86}
 already proposed to extend the \textit{Apply} operation to support ternary
 operations and then use the equivalent \textit{if-then-else} ($ITE$)
@@ -474,7 +474,31 @@ implementation of the $ITE$ operator. \tbr
 \label{subsec:ite-operator}
 
 Accoring to Brace et al.~\cite{BRACE90}, the $ITE$ operator forms the core of an
-efficient OBDD package implementation. \tbr
+efficient OBDD package implementation. Hence, they used a hash-based cache, called
+\textit{caching computed-table}, to implement it, exploiting a high locality of
+reference and consuming less memory.
+
+Compared to using a normal hash table, this results in more recursive calls to 
+$ITE$ (because of cache misses) but less time spent in garbage collection
+(described in Section~\ref{subsec:garbage-collection}) and look-ups (because no
+collision chains need to be searched).
+
+Nevertheless, it is worth noting that the worst-case time complexity increases
+to be exponential if all keys are hashed to the same value, compared to a
+polynomial time complexity for normal hash tables~\cite{BRACE90}. 
+
+Furthermore, Brace et al.~\cite{BRACE90} advise to use \textit{standard triples},
+i.e. to define an $ITE(f_1, f_2, f_3)$-based equivalence relation on sets of
+three functions $f_1$, $f_2$ and $f_3$. This takes advantage of the fact that
+different parameters may yield the same result when $ITE$ is called. Hence, before
+the computed-table is accessed when executing $ITE$, the arguments are replaced
+by the standard arguments. Using this approach some recomputations can be avoided
+and, obviously, less space is consumed by the computed-table~\cite{BRACE90}.
+
+Brace et al.~\cite[p. 42]{BRACE90} provides the pseudocode of the $ITE$ algorithm
+as well as a modification, called $ite\_constant$, which can be used to implement
+logical implication tests more efficiently by avoiding the construction of
+intermediate nodes. \tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
