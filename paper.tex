@@ -368,7 +368,7 @@ $
 This would result in an algorithm having a worst case time complexity of 
 $O\left(|V_{f_1}|^2 \cdot |V_{f_2}|^2\right)$. Therefore, Bryant~\cite{BRYANT86}
 already proposed to extend the \textit{Apply} operation to support ternary
-operations and then use the equivalent \textit{if-then-else} (\textit{ITE})
+operations and then use the equivalent \textit{if-then-else} ($ITE$)
 representation:
 \begin{center}
 $
@@ -378,7 +378,7 @@ $
 \end{center}
 
 \noindent
-For a given node $x$, the ITE operator for three nodes, \newline
+For a given node $x$, the $ITE$ operator for three nodes, \newline
 $ITE(x, hi(x), lo(x))$, chooses $hi(x)$ if $x$ evaluates to true and $lo(x)$
 otherwise. Computing $ITE(x, hi(x), lo(x))$ is accomplished by utilizing a
 recursive formulation~\cite{BRACE90}. To shorten the recursive formula, $l$ and
@@ -396,7 +396,7 @@ al.~\cite{BRACE90} called the variable associated with $n$, i.e. $x_n$ the
 \textit{top variable} of $n$.
 
 The time complexity then improves to be
-$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86} when using the ITE
+$O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86} when using the $ITE$
 operator.~\cite[p. 686]{BRYANT86} lists Bryant's full pseudocode.
 
 Bryant~\cite{BRYANT86} also described another, even more efficient way to compose
@@ -433,7 +433,7 @@ dynamic character without specific memory access patterns~\cite{BRYANT92}.
 
 Hence, the following sections cover important aspects to keep in mind when
 implementing an OBDD framework efficiently, i.e. efficient data structures, the
-ITE operator, how to possibly approach the variable ordering problem and
+$ITE$ operator, how to possibly approach the variable ordering problem and
 \textit{garbage collection}. \tbr
 
 \subsection{Efficient Data Structures}
@@ -466,12 +466,12 @@ There exists a special version of hash tables, so-called
 \textit{hash-based caches}, which do not resolve collisions, i.e. overwrite
 existing entries, and issue a cache miss if a looked up element is not found.
 As will be seen, \textit{Hash-based caches} are useful to provide an efficient
-implementation of the ITE operator. \tbr
+implementation of the $ITE$ operator. \tbr
 
 \subsection{ITE Operator}
 \label{subsec:ite-operator}
 
-Accoring to Brace et al.~\cite{BRACE90}, the ITE operator forms the core of an
+Accoring to Brace et al.~\cite{BRACE90}, the $ITE$ operator forms the core of an
 efficient OBDD package implementation. \tbr
 
 \subsection{Dynamic Variable Ordering}
