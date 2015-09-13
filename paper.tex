@@ -378,15 +378,22 @@ $
 \end{center}
 
 \noindent
-For a given node $x$, the ITE operator $ITE(x, hi(x), lo(x))$ chooses $hi(x)$ if
-$x$ evaluates to true and $lo(x)$ otherwise. Computing $ITE(x, hi(x), lo(x))$ is
-accomplished by utilizing the following recursive form:
+For a given node $x$, the ITE operator for three nodes, \newline
+$ITE(x, hi(x), lo(x))$, chooses $hi(x)$ if $x$ evaluates to true and $lo(x)$
+otherwise. Computing $ITE(x, hi(x), lo(x))$ is accomplished by utilizing a
+recursive formulation~\cite{BRACE90}. To shorten the recursive formula, $l$ and
+$h$ are used to represent $lo(x)$ and $hi(x)$, respectively.
 \begin{center}
 $
-ITE(x, hi(x), lo(x)) =
-(x, ITE(), ITE())
+ITE(x, h, l) =
+(var(x), ITE(x|_{x=1}, h|_{x=1}, l|_{x=1}), ITE(x|_{x=0}, h|_{x=0}, l|_{x=0}))
 $
 \end{center}
+
+This formulation is based upon the fact, that every node $n$ of an OBDD represents
+a Boolean function and is denoted by a triple $(var(n), hi(n), lo(n))$. Brace et
+al.~\cite{BRACE90} called the variable associated with $n$, i.e. $x_n$ the
+\textit{top variable} of $n$.
 
 The time complexity then improves to be
 $O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86} when using the ITE
