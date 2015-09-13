@@ -460,7 +460,9 @@ Moreover, hash tables are useful to generate a reduced graph directly from some
 operations by maintaing a hash table associating triples
 ($var(n)$, $lo(n)$, $hi(n)$) with a single nonterminal node $n$. This is done for
 each nonterminal node $n$ generated while executing the
-operation~\cite{BRYANT92}.
+operation~\cite{BRYANT92}. This is also referred to as
+\textit{unique-table}~\cite{BRACE90} imposes the canonical form of an OBDD. If a
+new node is generated, a corresponding entry is created in the unique-table.
 
 There exists a special version of hash tables, so-called
 \textit{hash-based caches}, which do not resolve collisions, i.e. overwrite
