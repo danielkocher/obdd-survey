@@ -503,7 +503,12 @@ canonical form.
 Implementing complement edges enables one to compute the complement and identify
 complement functions in constant time (because $f$ and $\overline{f}$ use the same
 node). According to Brace et al.~\cite{BRACE90} this reduces the total runtime
-to form the OBBDD by almost a factor of 2 (for 12 examples). \tbr
+to form the OBBDD by almost a factor of 2 (for 12 examples).
+
+Another refinement to the graph representation, also proposed by Brace et
+al.~\cite{BRACE90}, is to integrate the unique-table into the graph representation,
+i.e. linking the collision chain of each node to the corresponding unique-table
+entry, to improve memory usage. \tbr
 
 \subsection{ITE Operator}
 \label{subsec:ite-operator}
