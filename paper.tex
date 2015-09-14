@@ -543,13 +543,25 @@ intermediate nodes. \tbr
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
 
+For an OBDD package it is desirable to provide the possibility to automatically 
+choose a good, though not optimal variable order for arbitrary functions. Of
+course, there exist heuristics to order variables before processing but
+Rudell~\cite{RUDELL93} proposed to integrate the determination and maintainance
+of the variable order into the OBDD package itself. This approach to the variable
+ordering problem is called \textit{dynamic variable ordering} and removes the
+necessity of choosing a variable ordering beforehand.
+
+Dynamic variable ordering executes the \textit{sifting} algorithm, also proposed
+by Rudell~\cite{RUDELL93}, to reorder the variables periodically and so minimize
+the size of the OBDD.
+
 \begin{figure}[ht]
     \centering
     \includestandalone[height = 3cm]{figs/min-obdd}
     \label{fig:min-obdd}
     \caption{Minimized OBDD (optimal).}
 \end{figure}
-\tbd
+\tbr
 
 \subsection{Garbage Collection}
 \label{subsec:garbage-collection}
