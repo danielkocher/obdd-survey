@@ -614,7 +614,11 @@ $x$ with its predecessor variable until $x$ becomes the top variable of the OBDD
 While proceeding, the ideal position is memorized and after $x$ became the top
 variable, $x$ is moved to this ideal position by, again, swapping levels one by
 one~\cite{RUDELL93}. Figure~\ref{fig:sifting-algorithm} shows this procedure
-applied to an example, requiring a total of 9 steps for 5 possible positions.
+applied to an example, requiring a total of 9 steps for 5 possible positions. The
+first phase, determining the ideal position by swapping two variables at a time,
+is marked red, i.e. the two swapped variables are marked. The variable pairs
+swapped during the second phase, i.e. moving the $x$ to its ideal position (4),
+are marked green. 
 
 \begin{figure}
     \centering
@@ -671,6 +675,12 @@ smaller~\cite{RUDELL93}.
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
 loosing the (desired) local complexity of variable swapping.
+
+However, dynamic variable ordering is a good practice to obtain minimized OBDDs.
+For example, Figure~\ref{fig:min-obdd} shows the minimized, and thus optimal, OBDD
+representation of \newline $f=\left(A \land B\right) \lor \left(B \land C\right)$
+which, compared to the OBDD shown in Figure~\ref{subfig:obdd}, consists of less
+nodes.
 
 \begin{figure}[ht]
     \centering
