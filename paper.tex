@@ -761,7 +761,17 @@ One can read the full proof in~\cite{BRYANT91}.
 Nevertheless, researches put some effort in improving this lower bound. In 2001,
 Woelfel~\cite{WOELFEL01} published a new bound lower bound as well as a first 
 nontrivial upper bound for the size of OBDDs representing $n$-bit integer
-multiplication by utilizing the concept of \textit{universal hashing}. \tbr
+multiplication by utilizing the concept of \textit{universal hashing}. Therefore,
+he utilized a universal family of hash functions to improve the exponential lower
+bound on the OBDD-size of integer multiplication to
+$2^{\lfloor\frac{n}{2}\rfloor}/96$. Moreover, Woelfel~\cite{WOELFEL01} proved
+the upper bound for the OBDD-size of computing the middle bit of an $n$-bit
+multiplication to be $7/3 \cdot 2^{\frac{4 \cdot n}{3}}$.
+
+Nevertheless, all lower bounds for $n$-bit integer multiplication are exponential
+in the number of nodes. Especially because of the high practical relevance of
+$n$-bit integer multiplication this is one of the main drawbacks of the OBDD
+representation~\cite{BRYANT86, BRYANT91, WOELFEL01}. \tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
