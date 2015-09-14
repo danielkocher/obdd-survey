@@ -656,7 +656,12 @@ of nodes per OBDD level. Then, the ideal position is computed for each variable
 utilizing the approach described above. The sifting algorithm has one big advantage
 over other similar algorithms, like \textit{window permutation algorithm}, namely
 variables can move many levels because all positions are evaluated, regardless of
-the temporary size of the OBDD.
+the temporary size of the OBDD~\cite{RUDELL93}.
+
+According to Rudell~\cite{RUDELL93}, $O(n^2)$ swaps of adjacent levels are
+necessary. Moreover, each swap has a complexity proportional to the with of the
+OBDD. Thus, Rudell~\cite{RUDELL93} advises to terminate whenever the OBDD doubles
+its size.
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
