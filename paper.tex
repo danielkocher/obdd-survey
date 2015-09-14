@@ -568,7 +568,12 @@ about which parts of the memory are \textit{dead} and thus can be freed. A node
 of an OBDD is called \textit{dead} if the reference count of it is equal to zero.
 The reference count of a node $x$ is decremented every time a corresponding
 formula is freed. If the reference count of $x$ reaches zero, the reference counts
-of $lo(x)$ and $hi(x)$ are decremented recursively.\tbr
+of $lo(x)$ and $hi(x)$ are decremented recursively.
+
+Instead of freeing dead nodes instantaneously, there exists a \textit{reclaim}
+operation which is performed whenever a lookup in the computed-table returns a
+dead node $x$. Such a reclaim operation increments the reference count of $x$ and
+propagates the reclaim operation to $lo(x)$ and $hi(x)$, respectively.\tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
