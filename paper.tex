@@ -6,6 +6,7 @@
 \usepackage{tikz}
 \usepackage{standalone}
 \usepackage{subfigure}
+\usepackage{colortbl}
 
 %%% TikZ libraries
 \usetikzlibrary{backgrounds, positioning, decorations.pathreplacing, calc, fit}
@@ -14,6 +15,17 @@
 %%% Macros
 \newcommand{\tbr}{\textbf{[TO BE REVISED]}}
 \newcommand{\tbd}{\textbf{[TO BE DONE]}}
+
+\newcommand\diag[4]{%
+  \multicolumn{1}{p{#2}|}{\hskip-\tabcolsep
+  $\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
+  \path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
+  \node[minimum width={#2+2\tabcolsep-\pgflinewidth},
+        minimum  height=\baselineskip+\extrarowheight-\pgflinewidth] (box) {};
+  \draw[line cap=round] (box.north west) -- (box.south east);
+  \node[anchor=south west] at (box.south west) {#3};
+  \node[anchor=north east] at (box.north east) {#4};
+ \end{tikzpicture}}$\hskip-\tabcolsep}}
 
 \begin{document}
 
@@ -593,14 +605,58 @@ find the ideal position of one variable when all other variables keep their
 positions. By definition, the ideal position of a variable is the position which
 minimizes the size of the OBDD.
 
-The sifting algorithm therefore uses a brute-force enumeration strategy. It starts
-by swapping the processed variable $x$ downwards one level at a time, i.e. swapping 
-it with its successor variable, which is located on the layer below in the OBDD.
-This is done until $x$ is the next to last variable in the OBDD. Then, this is
-done in the other way round, i.e. swapping $x$ with its predecessor variable until
-$x$ becomes the top variable of the OBDD. While proceeding, the ideal position
-is memorized and after $x$ became the top variable, $x$ is moved to this ideal
-position by, again, swapping levels one by one.
+The sifting algorithm therefore uses a brute-force enumeration strategy to find
+the optimal variable position. It starts by swapping the processed variable $x$
+downwards one level at a time, i.e. swapping it with its successor variable, which
+is located on the layer below in the OBDD. This is done until $x$ is the next to
+last variable in the OBDD. Then, this is done in the other way round, i.e. swapping
+$x$ with its predecessor variable until $x$ becomes the top variable of the OBDD.
+While proceeding, the ideal position is memorized and after $x$ became the top
+variable, $x$ is moved to this ideal position by, again, swapping levels one by
+one~\cite{RUDELL93}. Figure~\ref{fig:sifting-algorithm} shows this procedure
+applied to an example, requiring a total of 9 steps for 5 possible positions.
+
+\begin{figure}
+    \centering
+    \begin{tabular}{l|l|l|l|l|l|}
+        \hline
+        \diag{0.1em}{1cm}{\scriptsize{Step}}{\scriptsize{Pos}} & $1$ & $2$ & $3$ & $4$ & $5$ \tabularnewline
+        \hline
+        init & $v$ & $w$ & $x$ & $y$ & $z$ \tabularnewline
+        \hline
+        1 & $v$ & $w$ & \cellcolor{red!50}$y$ & \cellcolor{red!50}$x$ & $z$ \tabularnewline
+        \hline
+        2 & $v$ & $w$ & $y$ & \cellcolor{red!50}$z$ & \cellcolor{red!50}$x$ \tabularnewline
+        \hline
+        3 & $v$ & $w$ & $y$ & \cellcolor{red!50}$x$ & \cellcolor{red!50}$z$ \tabularnewline
+        \hline
+        4 & $v$ & $w$ & \cellcolor{red!50}$x$ & \cellcolor{red!50}$y$ & $z$ \tabularnewline
+        \hline
+        5 & $v$ & \cellcolor{red!50}$x$ & \cellcolor{red!50}$w$ & $y$ & $z$ \tabularnewline
+        \hline
+        6 & \cellcolor{red!50}$x$ & \cellcolor{red!50}$v$ & $w$ & $y$ & $z$ \tabularnewline
+        \hline\hline
+        7 & \cellcolor{green!50}$v$ & \cellcolor{green!50}$x$ & $w$ & $y$ & $z$ \tabularnewline
+        \hline
+        8 & $v$ & \cellcolor{green!50}$w$ & \cellcolor{green!50}$x$ & $y$ & $z$ \tabularnewline
+        \hline
+        9 & $v$ & $w$ & \cellcolor{green!50}$y$ & \cellcolor{green!50}$x$ & $z$ \tabularnewline
+        \hline
+    \end{tabular}
+    \caption{Sifting algorithm (ideal position of $x$: 4)}
+    \label{fig:sifting-algorithm}
+\end{figure}
+
+This procedure could be refined to choose the direction before actually start
+swapping the processed variable. As a result, the variable is always swapped
+towards the closer variable position first.
+
+To obtain a proper variable ordering, variables are sorted descending in the number
+of nodes per OBDD level. Then, the ideal position is computed for each variable
+utilizing the approach described above. The sifting algorithm has one big advantage
+over other similar algorithms, like \textit{window permutation algorithm}, namely
+variables can move many levels because all positions are evaluated, regardless of
+the temporary size of the OBDD.
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
@@ -609,8 +665,8 @@ loosing the (desired) local complexity of variable swapping.
 \begin{figure}[ht]
     \centering
     \includestandalone[height = 3cm]{figs/min-obdd}
-    \label{fig:min-obdd}
     \caption{Minimized OBDD (optimal).}
+    \label{fig:min-obdd}
 \end{figure}
 \tbr
 
