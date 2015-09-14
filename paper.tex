@@ -564,6 +564,33 @@ Periodically means, that a reordering is not performed by user requests but at
 appropriate points, determined by the OBDD package itself and so eliminate any
 user responsibility.
 
+The core forms an efficient variable swap implementation, i.e. keep the changes
+in the OBDD as local as possible when swapping two adjacent variables $x$ and
+$y$. It has been found that swapping variable of two adjacent levels $i$ and
+$(i+1)$ only affects the nodes of these two levels. Hence, Rudell~\cite{RUDELL93}
+proposed to keep a separate unique-table for each level of the OBDD, similar to
+the last refinement in \textit{Graph representation} of
+Section~\ref{subsec:efficient-data-structures}. In essence, keeping separate 
+unique-tables for each node is the best solution.
+
+To ensure that each node represents the same function before and after the variable
+swap, Rudell~\cite{RUDELL93} proposed a node overwriting strategy. A given node
+$(var(x_i), hi(x_i), lo(x_i))$ at level $i$ is overwritten by the triple
+\begin{center}
+$(var(x_{i+1}), (x_i, h|_{x=1}, l|_{x=1}), (x_i, h|_{x=0}, l|_{x=0}))$
+\end{center}
+Here the notation of \textit{Compose} (Section~\ref{sec:operations}) is reused
+to simplify the formula, i.e. $h$ ($l$) denotes $hi(x_i)$ ($lo(x_i)$).
+
+Rudell~\cite{RUDELL93} also proposed to clear the computed-table and issue a
+garbage collection before minimizing the OBDD. Afterwards, all nodes of level
+$(i+1)$ can be freed incrementally if there exist no references from elsewhere than
+level $i$.
+
+Unfortunately, dynamic variable ordering has some bad consequences as well, namely
+\textit{negate-input-} and \textit{negate-else-edges} cannot be used without
+loosing the (desired) local complexity of variable swapping.
+
 \begin{figure}[ht]
     \centering
     \includestandalone[height = 3cm]{figs/min-obdd}
