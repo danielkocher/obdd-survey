@@ -555,7 +555,12 @@ intermediate nodes. \tbr
 \subsection{Garbage Collection}
 \label{subsec:garbage-collection}
 
-\tbd
+The first OBDD package containing kind of a garbage collection was the one
+introduced by Brace, Bryant and Rudell~\cite{BRACE90}. The garbage collection was
+based upon the reference counting technique, i.e. every node of the OBDD had a
+reference count. This reference count represents two kinds of references, (1)
+the number of other nodes and (2) the number of formulas referencing it, but does
+not take references from the unique- and computed-table into account. \tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
