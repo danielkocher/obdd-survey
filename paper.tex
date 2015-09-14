@@ -583,8 +583,11 @@ in the computed-table referencing dead nodes, and frees all dead nodes. The size
 of computed- as well as unique-table are increased if the garbage collection does
 not find enough dead nodes. Another event invoking the garbage collection is the
 memory overflow of computed- and unique-table, although, the $10\%$-threshold of
-dead nodes is used again. In any other case, the garbage collection gives up (and
-of course, frees all intermediate nodes). \tbr
+dead nodes is used again. In any other case, the garbage collection gives up (and,
+of course, frees all intermediate nodes)~\cite{BRACE90}.
+
+As stated by Brace et al.~\cite{BRACE90}, this provides effective memory usage
+at very low run-time costs, i.e. $3-7\%$ of the total runtime. \tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
