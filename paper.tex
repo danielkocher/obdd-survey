@@ -661,7 +661,12 @@ the temporary size of the OBDD~\cite{RUDELL93}.
 According to Rudell~\cite{RUDELL93}, $O(n^2)$ swaps of adjacent levels are
 necessary. Moreover, each swap has a complexity proportional to the with of the
 OBDD. Thus, Rudell~\cite{RUDELL93} advises to terminate whenever the OBDD doubles
-its size.
+its size. On the one hand, in contrast to heuristics and similar approaches, i.e.
+the window permutation algorithm, the dynamic variable ordering using the sifting
+algorithm has a significantly higher runtime. On the other hand, dynamic variable
+ordering using the sifting algorithm was able to complete operations which were
+not completed without it. Furthermore, the resulting OBDDs were significantly
+smaller~\cite{RUDELL93}.
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
