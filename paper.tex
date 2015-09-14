@@ -733,7 +733,31 @@ nodes.
 Some limitation were already mentioned briefly. This section provides a deeper
 insight on what cannot be accomplished using the standard OBDD representation.
 This includes classes of Boolean function which cannot be computed efficiently
-using OBDDs and, again, the variable ordering problem. \tbr
+using OBDDs and, again, the variable ordering problem.
+
+Already in 1986, Bryant~\cite{BRYANT86} noticed that some classes of Boolean
+functions cannot be represented by an OBDD efficiently, regardless of the variable
+ordering chosen. He then studied the complexity of Boolean functions in
+1991~\cite{BRYANT91} to provide a lower bound on the OBDD as data structure (and
+very large scale integrated circuits). The complexity was expressed in the minimum
+size of the OBDD, i.e. the minimal number of nodes for any possible variable
+ordering $\pi$. Bryant~\cite{BRYANT91} mainly focused on the set of integer
+multipliers having word size $n$.
+
+Bryant~\cite{BRYANT91} first generalized a function over $2n$ variables. The size
+of an OBDD then can range from $2n$ up to $2^{n+1}-2$ for different variable
+orderings. Now, analyzing $n$-bit integer multiplication, Bryant~\cite{BRYANT86}
+already proved that for any variable ordering, there exists an $0 \le i \le 2n$
+such that the function representing output $i$ requires an OBDD of size
+$\Omega(1.09^n)$. Bryant himself~\cite{BRYANT91} showed that there is not much
+of a difference between computing the single output $(n-1)$ or the entire product
+of an $n$-bit integer multiplier. Bryant~\cite{BRYANT91} found the $n$-bit integer
+multiplication to be especially hard, requiring an OBDD having at least $2^{n/8}$
+nodes to compute the middle bit of the built product for any variable ordering.
+Hence, the complexity of an OBDD representing integer multiplication is
+exponential in $n$, where $n$ denotes the word size of the multiplied integers.
+
+\tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
