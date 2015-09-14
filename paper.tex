@@ -804,7 +804,32 @@ The main idea behind this approach is to represent the state space symbolically,
 instead of explicitly with e.g. a state table. Such explicit state tables may grow
 exponentially with the number of concurrent components, because the state space
 does so. Commonly, this is referred to as the
-\textit{state explosion problem}~\cite{BURCH90, MCMILLAN92}. \tbr
+\textit{state explosion problem}~\cite{BURCH90, MCMILLAN92}. To overcome this
+problem, Burch et al.~\cite{BURCH90} as well as McMillan~\cite{MCMILLAN92}
+proposed to utilize reduced ordered binary decision diagrams to represent the 
+state space symbolically. Although OBDDs cannot avoid a state explosion in general,
+many practically relevant systemes with large state spaces can be
+verified~\cite{BURCH90, MCMILLAN92}. Experiments~\cite{BURCH90} showed that
+symbolic model checking enables to verify models with more than $10^{20}$ states,
+whereas explicit enumeration approaches can only verify models up to $10^6$
+states. 
+
+Burch et al.~\cite{BURCH90} and McMillan~\cite{MCMILLAN92} extend Bryant's OBDD
+representation~\cite{BRYANT86} by quantification over Boolean variables (QBF) and
+substitution of variable names. The quantification over Boolean variables is
+realized by using Bryant's \textit{Restrict} operation (see
+Section~\ref{sec:operations}). Let $f$ be a QBF formula and $x$ be a Boolean
+variable. The QBF formula $\exists x\left(f\right)$ then is equivalent to
+$f|_{a=0} \lor f|_{a=1}$~\cite{BURCH90}. Substitution of variables, e.g.
+substitute $x$ by $y$ (denoted $f\langle x\leftarrow y\rangle$), is computed using
+the following equivalence:
+\begin{center}
+$
+f\langle x\leftarrow y\rangle \equiv
+\exists x\lbrack\left(x \Leftrightarrow y\right) \land f\rbrack
+$
+\end{center}
+\tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
