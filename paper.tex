@@ -548,12 +548,21 @@ choose a good, though not optimal variable order for arbitrary functions. Of
 course, there exist heuristics to order variables before processing but
 Rudell~\cite{RUDELL93} proposed to integrate the determination and maintainance
 of the variable order into the OBDD package itself. This approach to the variable
-ordering problem is called \textit{dynamic variable ordering} and removes the
-necessity of choosing a variable ordering beforehand.
+ordering problem is called \textit{dynamic variable ordering} and increases the
+robustness of an OBDD package by removing the necessity of choosing a proper
+variable ordering beforehand and thus running the risk of spacing out.
 
 Dynamic variable ordering executes the \textit{sifting} algorithm, also proposed
 by Rudell~\cite{RUDELL93}, to reorder the variables periodically and so minimize
-the size of the OBDD.
+the size of the OBDD. This on-the-fly approach enabled Rudell~\cite{RUDELL93} to
+overcome hard problems for which heuristics did not find a variable ordering good
+enough to actually solve them, i.e. heuristics were able to solve 24 out of 35
+large circuits from the IWLS'91 and dynamic variable ordering using the sift
+algorithm was able to solve 33 out of these 35 large circuits~\cite{RUDELL93}.
+
+Periodically means, that a reordering is not performed by user requests but at
+appropriate points, determined by the OBDD package itself and so eliminate any
+user responsibility.
 
 \begin{figure}[ht]
     \centering
