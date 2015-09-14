@@ -574,7 +574,17 @@ Instead of freeing dead nodes instantaneously, there exists a \textit{reclaim}
 operation which is performed whenever a lookup in the computed-table returns a
 dead node $x$. Such a reclaim operation increments the reference count of $x$ and
 propagates the reclaim operation to $lo(x)$ and $hi(x)$,
-respectively~\cite{BRACE90}. \tbr
+respectively~\cite{BRACE90}.
+
+The garbage collection is executed whenever the load factor (the ratio between
+number of keys stored and number of available bins) exceeds 4 after an insertion
+and $10\%$ of all OBDD nodes are dead. A garbage collection run deletes all entries
+in the computed-table referencing dead nodes, and frees all dead nodes. The sizes
+of computed- as well as unique-table are increased if the garbage collection does
+not find enough dead nodes. Another event invoking the garbage collection is the
+memory overflow of computed- and unique-table, although, the $10\%$-threshold of
+dead nodes is used again. In any other case, the garbage collection gives up (and
+of course, frees all intermediate nodes). \tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
