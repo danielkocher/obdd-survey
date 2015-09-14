@@ -584,8 +584,16 @@ to simplify the formula, i.e. $h$ ($l$) denotes $hi(x_i)$ ($lo(x_i)$).
 
 Rudell~\cite{RUDELL93} also proposed to clear the computed-table and issue a
 garbage collection before minimizing the OBDD. Afterwards, all nodes of level
-$(i+1)$ can be freed incrementally if there exist no references from elsewhere than
-level $i$.
+$(i+1)$ can be freed incrementally if there exist no references from elsewhere
+than level $i$.
+
+To minimize the OBDD, a novel minimization algorithm was introduced by
+Rudell~\cite{RUDELL93}, referred to as \textit{sifting algorithm}. It tries to
+find the ideal position of one variable when all other variables keep their
+positions. By definition, the ideal position of a variable is the position which
+minimizes the size of the OBDD.
+
+
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
