@@ -560,7 +560,15 @@ introduced by Brace, Bryant and Rudell~\cite{BRACE90}. The garbage collection wa
 based upon the reference counting technique, i.e. every node of the OBDD had a
 reference count. This reference count represents two kinds of references, (1)
 the number of other nodes and (2) the number of formulas referencing it, but does
-not take references from the unique- and computed-table into account. \tbr
+not take references from the unique- and computed-table into account.
+
+Today, garbage collecion is a well-known topic. It is used to free up unnecessary
+allocated or unused memory. To accomplish this, the garbage collection has to know
+about which parts of the memory are \textit{dead} and thus can be freed. A node
+of an OBDD is called \textit{dead} if the reference count of it is equal to zero.
+The reference count of a node $x$ is decremented every time a corresponding
+formula is freed. If the reference count of $x$ reaches zero, the reference counts
+of $lo(x)$ and $hi(x)$ are decremented recursively.\tbr
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
