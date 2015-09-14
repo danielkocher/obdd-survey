@@ -789,7 +789,22 @@ NP-complete~\cite{BOLLIG96}. \tbr
 \section{Symbolic Model Checking}
 \label{sec:symbolic-model-checking}
 
-\tbd
+One specific application of reduced ordered binary decision diagrams is 
+\textit{symbolic model checking}, introduced by Burch et al.~\cite{BURCH90} in
+1990. \textit{Symbolic}, because the state space is not represented explicitly
+but symbolically by utilizing OBDDs to represent $\mu$-Calculus formulas.
+In~\cite{BURCH90}, Burch, Clarke, McMillan, Dill and Hwang derived an efficient
+decision procedures for CTL model checking as well as satisfiability of LTL
+formulas, strong and weak observational equivalence of finite transition systems
+and language containment for finite $\omega$-automata by introducing a new
+$\mu$-Calculus model checking algorithm. However, this survey just outlines the
+$\mu$-Calculus and the efficient decision procedures for CTL model checking.
+
+The main idea behind this approach is to represent the state space symbolically,
+instead of explicitly with e.g. a state table. Such explicit state tables may grow
+exponentially with the number of concurrent components, because the state space
+does so. Commonly, this is referred to as the
+\textit{state explosion problem}~\cite{BURCH90, MCMILLAN92}. \tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
