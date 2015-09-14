@@ -593,7 +593,14 @@ find the ideal position of one variable when all other variables keep their
 positions. By definition, the ideal position of a variable is the position which
 minimizes the size of the OBDD.
 
-
+The sifting algorithm therefore uses a brute-force enumeration strategy. It starts
+by swapping the processed variable $x$ downwards one level at a time, i.e. swapping 
+it with its successor variable, which is located on the layer below in the OBDD.
+This is done until $x$ is the next to last variable in the OBDD. Then, this is
+done in the other way round, i.e. swapping $x$ with its predecessor variable until
+$x$ becomes the top variable of the OBDD. While proceeding, the ideal position
+is memorized and after $x$ became the top variable, $x$ is moved to this ideal
+position by, again, swapping levels one by one.
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
