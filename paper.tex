@@ -1064,16 +1064,16 @@ algorithmic properties as OBDDs~\cite{BRYANT95}.
 This representation is especially useful when the data can be represented as
 (sparse) bit vectors. Any subset of these bit vectors can be represented by a
 Boolean function over $n$ variables. If the corresponding bit vector is in the
-set, the \textit{Zero-Suppressed BDDs} (\textit{ZBDDs}) yields 1 for a given
+set, the \textit{Zero-Suppressed BDD} (\textit{ZBDD}) yields 1 for a given
 variable assignment.
 
-The bit vector are \textit{sparse} in the sense that the set contains much less
-than $2^n$ vectors and the bit vectors themselves have many zero elements. ZBDDs
-are similar to OBDDs but they use a different reduction rule, exploiting the
-sparse bit vectors. In ZBDDs, nodes can be eliminated whenever setting the
-corresponding variable to 1 yields 0 as result, which is often the case for sparse
-bit vectors. This representation proved successful to solve some combinatorial
-problems~\cite{BRYANT95}. \tbr %\newpage
+Bit vectors are \textit{sparse} in the sense that the set of bit vectors contains
+much less than all possible $2^n$ bit vectors and the bit vectors themselves
+contain many zero elements. ZBDDs are similar to OBDDs but they use a different
+reduction rule, exploiting the sparseness of the bit vectors. In ZBDDs, nodes can be
+eliminated whenever setting the corresponding variable to 1 yields 0 as result,
+which is often the case for sparse bit vectors. This representation proved
+successful to solve some combinatorial problems~\cite{BRYANT95}.
 
 \paragraph*{Binary Expression Diagrams}
 \mbox{} % workaround to get line break after paragraph
@@ -1102,7 +1102,7 @@ arbitrary circuits can be translated into BEDs. As a consequence, the BED
 representation suffices to solve integer multiplication using a quadratic number
 of nodes~\cite{ANDERSEN97}. 
 
-Analogous to OBDDs and FDDs, OBEDs and FBEDs can be defined, whereas OBEDs are
+Analogous to OBDDs and FBDDs, OBEDs and FBEDs can be defined, whereas OBEDs are
 OBDDs without operator nodes. The reduction rule of BEDs is similar to the one
 of OBDDs but extended with an additional rule for operator nodes. For any operator
 nodes $n$ it has to hold that $lo(n)$ and $hi(n)$ are nonterminals in order to
