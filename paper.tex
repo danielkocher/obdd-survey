@@ -829,7 +829,53 @@ f\langle x\leftarrow y\rangle \equiv
 \exists x\lbrack\left(x \Leftrightarrow y\right) \land f\rbrack
 $
 \end{center}
+
+Before discussing the symbolic model checking algorithms \texttt{BDD}$_f$ and
+\texttt{BDD}$_R$, the used $\mu$-Calculus has to be described. For a given finite
+signature $\mathcal{S}$, each symbol is either an individual or a predicate
+variable having positive arity. Burch et al.~\cite{BURCH90} considered two
+syntactic categories, i.e. \textit{formulas} and \textit{relational terms}, having
+the following forms.
+
+\noindent
+\textbf{Formulas:}~\cite{BURCH90}
+\begin{enumerate}
+    \item{\textbf{True}, \textbf{False}}.
+    \item{
+        $\lbrack z_1 = z_2 \rbrack$; $z_{1, 2}\in\mathcal{S}$ are individual
+        variables.
+    }
+    \item{
+        $\neg f$, $f \lor g$, $\exists z\left( f \right)$; $z\in\mathcal{S}$ is
+        an individual variable, $f$ and $g$ are formulas.
+    }
+    \item{
+        $P\left(z_1, \ldots, z_n\right)$; $P$ is an $n$-ary relational term and
+        \newline $z_{1, \ldots, n}\in\mathcal{S}$ are individual variables not
+        free in $P$.
+    }
+\end{enumerate}
+\textbf{$n$-ary relational terms:}~\cite{BURCH90}
+\begin{enumerate}
+    \item{$Z$; $Z\in\mathcal{S}$ is an $n$-ary predicate variable.}
+    \item{
+        $\lambda z_1, \ldots, z_n\left( f \right)$; $f$ is a formula and
+        $z_1, \ldots, z_n\in\mathcal{S}$ are distinct individual variables.
+    }
+    \item{
+        $\mu Z \left( P \right)$; $Z\in\mathcal{S}$ is an $n$-ary predicate variable
+        and $P$ is an $n$-ary relational term \textit{formally monotone in} $Z$,
+        i.e. all free occurrences of $Z$ in $P$ have to be evenly negated. This
+        $n$-ary relatioinal term is the \textit{least fixed point} (\textit{lfp})
+        of an $n$-ary relational term $P$. Analogous, $\nu Z \left( P \right)$ is
+        the \textit{greatest fixed point} (\textit{gfp}) and is equivalent to
+        $\neg\mu Z \left( \neg P \langle Z \leftarrow \left( \neg Z \right) \rangle \right)$.
+    }
+\end{enumerate}
+
 \tbr
+
+
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
