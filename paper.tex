@@ -1102,6 +1102,13 @@ arbitrary circuits can be translated into BEDs. As a consequence, the BED
 representation suffices to solve integer multiplication using a quadratic number
 of nodes~\cite{ANDERSEN97}. 
 
+Analogous to OBDDs and FDDs, OBEDs and FBEDs can be defined, whereas OBEDs are
+OBDDs without operator nodes. The reduction rule of BEDs is similar to the one
+of OBDDs but extended with an additional rule for operator nodes. For any operator
+nodes $n$ it has to hold that $lo(n)$ and $hi(n)$ are nonterminals in order to
+guarantee reducedness. However, even if a BED is reduced, canonicity is not
+guaranteed (in contrast to OBDDs).
+
 \tbr
 
 % balance columns on last page
