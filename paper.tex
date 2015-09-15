@@ -1037,7 +1037,7 @@ to use these methods to do \textit{fair} CTL model checking.
 \label{sec:alternative-representations}
 
 In this last section, some alternative representations of BDDs are discussed
-briefly, i.e. FDDs, ZBDDs and BEDs. These representations were introduced primarily
+briefly, i.e. FBDDs, ZBDDs and BEDs. These representations were introduced primarily
 because the OBDD representation is insufficient for some problems of practical
 relevance. Bryant~\cite{BRYANT95} already reviewed most alternative represenations
 but some were introduced after this overview, e.g. the
@@ -1050,12 +1050,13 @@ Hulgaard~\cite{ANDERSEN97} in 1997.
 Although the variable ordering problem is well-studied, OBDDs have some severe
 limitations for some classes of Boolean functions, regardless of the variable
 ordering chosen, e.g. integer multiplication (see Section~\ref{sec:limitations}).
-One way researchers tried to overcome this issue is relaxing the variable ordering
-requirement. \textit{Free BDDs} (\textit{FDDs}) is one proposed approach. FDDs
-do not require the variables in the BDD to be ordered but, instead, require that
-each variable only occurs once along any path (starting from the root node).
-Hence, FDDS are also referred to as \textit{1-time branching programs}. Moreover,
-FDDs have the same desirable algorithmic properties as OBDDs~\cite{BRYANT95}. \tbr
+One way researchers tried to overcome this issue is by relaxing the variable
+ordering requirement. \textit{Free BDDs} (\textit{FBDDs}) is one proposed
+approach. FBDDs do not require the variables in the BDD to be ordered but,
+still, require that each variable only occurs once along any path (starting from
+the root node). Hence, FBDDS are also referred to as
+\textit{1-time branching programs}. Moreover, FBDDs have the same desirable
+algorithmic properties as OBDDs~\cite{BRYANT95}.
 
 \paragraph*{Zero-Suppressed BDDs}
 \mbox{} % workaround to get line break after paragraph
