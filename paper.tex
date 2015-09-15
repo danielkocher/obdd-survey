@@ -299,13 +299,14 @@ and $op$ to $\oplus$ (\texttt{XOR}). Moreover, the already mentioned functional
 equivalence can be tested by applying $\overline{\oplus}$ (\texttt{XNOR}) to
 $f_1$ and $f_2$ for all relevant cases. Therefore, Bryant~\cite{BRYANT92} defined
 a function $d(x_1, \ldots, x_n)$ for \textit{Don't cares}:
-
+\begin{center}
 $d(x_1, \ldots, x_n)=
 \begin{cases}
     1, & \text{if values are not relevant} \\
     0, & otherwise
 \end{cases}
 $
+\end{center}
 
 \noindent
 Using this function, one checks whether $f_1$ and $f_2$ are functionally
@@ -379,9 +380,8 @@ $
 
 This would result in an algorithm having a worst-case time complexity of 
 $O\left(|V_{f_1}|^2 \cdot |V_{f_2}|^2\right)$. Therefore, Bryant~\cite{BRYANT86}
-already proposed to extend the \textit{Apply} operation to support ternary
-operations and then use the equivalent \textit{if-then-else} ($ITE$)
-representation:
+proposed to extend the \textit{Apply} operation to support ternary operations and
+then use the equivalent \textit{if-then-else} ($ITE$) representation:
 \begin{center}
 $
 ITE\left(f_2, f_1|_{x_i=1}, f_1|_{x_i=0}\right) =
@@ -403,9 +403,9 @@ $
 \end{center}
 
 This formulation is based upon the fact, that every node $n$ of an OBDD represents
-a Boolean function and is denoted by a triple $(var(n), hi(n), lo(n))$. Brace et
-al.~\cite{BRACE90} called the variable associated with $n$, i.e. $x_n$ the
-\textit{top variable} of $n$.
+a Boolean function and is denoted by a triple $(var(n), hi(n), lo(n))$.
+%Brace et al.~\cite{BRACE90} called the variable associated with $n$ the
+%\textit{top variable} of $n$.
 
 The time complexity then improves to be
 $O\left(|V_{f_1}|^2 \cdot |V_{f_2}|\right)$~\cite{BRYANT86} when using the $ITE$
@@ -413,7 +413,6 @@ operator.~\cite[p. 686]{BRYANT86} lists Bryant's full pseudocode.
 
 Bryant~\cite{BRYANT86} also described another, even more efficient way to compose
 two function graphs. But this approach only applicable under restricted conditions.
-\tbr
 
 \paragraph*{Satisfy}
 \mbox{} % workaround to get line break after paragraph
