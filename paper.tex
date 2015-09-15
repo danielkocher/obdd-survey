@@ -1061,7 +1061,19 @@ FDDs have the same desirable algorithmic properties as OBDDs~\cite{BRYANT95}. \t
 \paragraph*{Zero-Suppressed BDDs}
 \mbox{} % workaround to get line break after paragraph
 
-\tbd
+This representation is especially useful when the data can be represented as
+(sparse) bit vectors. Any subset of these bit vectors can be represented by a
+Boolean function over $n$ variables. If the corresponding bit vector is in the
+set, the \textit{Zero-Suppressed BDDs} (\textit{ZBDDs}) yields 1 for a given
+variable assignment.
+
+The bit vector are \textit{sparse} in the sense that the set contains much less
+than $2^n$ vectors and the bit vectors themselves have many zero elements. ZBDDs
+are similar to OBDDs but they use a different reduction rule, exploiting the
+sparse bit vectors. In ZBDDs, nodes can be eliminated whenever setting the
+corresponding variable to 1 yields 0 as result, which is often the case for sparse
+bit vectors. This representation proved successful to solve some combinatorial
+problems~\cite{BRYANT95}. \tbr
 
 \paragraph*{Binary Moment Diagrams}
 \mbox{} % workaround to get line break after paragraph
