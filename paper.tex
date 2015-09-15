@@ -983,6 +983,28 @@ $\text{BDD}_R \left( R, I_P \right)$ distinguishes three cases:
 The complete code of $\text{BDD}_f$ and $\text{BDD}_R$ is listed
 in~\cite[p. 432]{BURCH90}.
 
+Based upon this two functions and the $\mu$-Calculus, one can now do CTL model
+checking by representing a CTL formula $f$ as a $\mu$-Calculus relational term
+$R$. Assuming standard CTL syntax and semantics, i.e. for the set of atomic
+propositions $AP$
+\begin{enumerate}
+    \item{$p \in AP$ is a CTL formula.}
+    \item{
+        Given two CTL formulas $f_1$ and $f_2$, also $\neg f_1$, $f_1 \land f_2$,
+        $\text{\textbf{EX}} f$,
+        $\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ and
+        $\text{\textbf{EG}} f_1$ are CTL formulas.
+    }
+\end{enumerate}
+
+A CTL formula is represented by a \textit{Kripke structure} \newline
+$\mathcal{M} \left( \mathcal{S}, \mathcal{S}_0, R, L \right)$, where $\mathcal{S}$
+is a finite set of states over $AP$, $\mathcal{S}_0 \in \mathcal{S}$ is the set
+of initial states, $R \subseteq \mathcal{S} \times \mathcal{S}$ is the transition
+relation and $L: \mathcal{S} \rightarrow 2^{AP}$ is a labelling function. An
+infinite sequence of states $\pi = s_0s_1s_2\ldots$ is called \textit{path} if
+$\forall i \in \mathbb{N}.\left( s_i, s_{i+1} \right) \in R$.
+
 \tbr
 
 \section{Alternative Representations}
