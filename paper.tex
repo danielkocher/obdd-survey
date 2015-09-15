@@ -158,21 +158,21 @@ As the name suggests, \textit{Reduced} Ordered Binary Decision Diagrams are a
 minimized representation of BDDs. Furthermore, the decision variables are ordered
 consistently. More formally, for any node $n$ and their respective children $m_1$
 and $m_2$, a total ordering is imposed, i.e. $var(n) < var(m_1)$ and
-$var(n) < var(m_2)$, respectively, where $var(x)$ denotes the label of node
-$x$~\cite{BRYANT86, BRYANT92}.
+$var(n) < var(m_2)$, respectively, where $var(x)$ denotes the label (variable)
+of node $x$~\cite{BRYANT86, BRYANT92}.
 
 This \textit{variable ordering} affects the efficiency of the symbolic
 manipulation because different variable orderings, in general, produce different
 OBDDs. In the worst case, this will result in exponential complexity for bad
 orderings. Nevertheless, as will be described in Section~\ref{sec:limitations},
 there exist classes of functions for which the OBDD complexity is exponential
-regardless of which variable ordering is chosen.
+regardless of the variable ordering chosen.
 
-Before discussing the reduction procedure, some definitions are necessary. Here
+Before discussing the reduction procedure, some definitions are necessary. Here,
 the original definitions of Bryant~\cite{BRYANT86, BRYANT91} are reused.
 
 A Boolean function can be represented as an OBDD, i.e. a rooted, directed,
-acyclic graph (DAG) with a set of nodes $V$ as well as a set of edges $E$. 
+acyclic graph (DAG), with a set of nodes $V$ and a set of edges $E$. 
 
 There exist \textit{nonterminal} and \textit{terminal} nodes. Each
 \textit{nonterminal} node $n$ has its own label $var(n)$ as well as two edges,
@@ -195,7 +195,7 @@ Bryant~\cite{BRYANT86, BRYANT92} described three transformation rules to reduce
 a graph such that it still represents the same function as before.
 
 For each constant function, there exists only a single terminal node representing
-it, e.g. for Boolean functions, only two terminal nodes exist, representing
+it, i.e. for Boolean functions, only two terminal nodes exist, representing
 \textbf{0} and \textbf{1}, respectively. Hence, when transforming a given BDD,
 eliminate all but one terminal node for each constant function and redirect all
 edges accordingly, i.e. to the one remaining node for each constant function.
@@ -203,11 +203,11 @@ edges accordingly, i.e. to the one remaining node for each constant function.
 There may be duplicate nonterminal nodes present in a given BDD. Formally, a node
 $d$ is a duplicate if $var(d) = var(n) \land lo(d) = lo(n) \land hi(d) = hi(n)$
 holds for any other node $n$. If this is the case, $d$ can be eliminated and all
-edges are redirected to $n$.
+edges are redirected to $n$ accordingly.
 
 The third and last transformation rule deals with completely redundant nonterminal
 nodes. Intuitively, this rule should be straightforward: any node having the same
-child on all outgoing edges is redundant because the actual value of the variable
+child on both outgoing edges is redundant because the actual value of the variable
 does not change the result of the function. More formally, a nonterminal node $n$
 is redundant if and only if $lo(n) = hi(n)$. Then, all incoming edges of $n$ can
 be redirected to $lo(n)$ and $n$ can be deleted afterwards.
@@ -242,7 +242,7 @@ OBDDs have one big advantage over other representations: their representation is
 \textit{canonical}. As a consequence, important tests can be performed on an OBDD
 in constant time, i.e. satisfiability and tautology tests. Moreover, OBDDs enable
 other tests, such as variable independence and functional equivalence tests, to
-be performed efficiently. \tbr
+be performed efficiently.
 
 \section{Operations}
 \label{sec:operations}
@@ -252,7 +252,7 @@ symbolic operations on graphs representing Boolean functions. The most basic
 operation is \textit{Apply} which applys a given operation $op$, e.g. \texttt{AND},
 to two given functions $f_1$ and $f_2$, and returns the result of $f_1\;op\;f_2$.
 Another operation is \textit{Restrict}, restricting a given variable $x$ to a
-given (constant) value $c$, denoted $f|_{x\leftarrow c}$. Furthermore, the
+given (constant) value $c$, denoted $f|_{x=c}$. Furthermore, the
 operations \textit{Compose} and \textit{Satisfy} can be defined as graph
 algorithms.
 
@@ -267,12 +267,15 @@ discussed first, mainly because it is used within \textit{Apply}. Besides,
 \textit{Restrict} is straightforward and easy to understand.
 
 A variable $x_i$, argument of a function $f$, can be restricted to a given value
-$c$, denoted by $f|_{x_i\leftarrow c}$, as follows.
+$c$, denoted by $f|_{x_i=c}$, as follows.
 
 Starting from the root $n$ of the OBDD representation of $f$ and traversing the
 OBDD depth-first, every node is checked for $var(n) = x_i$. This is done recursively
-on the given graph, generating the resultant graph This node represents
-the variable to be restricted. Now, there are two cases for $c$ to distinguish:
+on the given graph, generating the resultant graph. This node represents
+the variable to be restricted. Now, there are two cases for $c$ to be
+distinguished. 
+
+\clearpage
 \begin{enumerate}
     \item{$c=0$: The incoming edge of $n$ is redirected to $lo(n)$.}
     \item{$c=1$: The incoming edge of $n$ is redirected to $hi(n)$.}
@@ -283,8 +286,7 @@ step, \textit{Restrict} generates a reduced graph immediately~\cite{BRYANT92}.
 
 This procedure has linear time complexity in the number of nodes, i.e. $O(|V|)$,
 assuming an efficient implementation (see
-Section~\ref{sec:implementational-aspects} for details)~\cite{BRYANT92}. 
-\tbr
+Section~\ref{sec:implementational-aspects} for details)~\cite{BRYANT92}.
 
 \paragraph*{Apply}
 \mbox{} % workaround to get line break after paragraph
