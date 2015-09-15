@@ -108,19 +108,19 @@ representations to probably overcome the limitations mentioned before.
 Lee~\cite{LEE59} and especially Akers~\cite{AKERS78} introduced them. BDDs
 represent a Boolean function $f$ as an acyclic, directed graph (DAG). The function
 arguments may be omitted in some cases to keep the formulas simple, i.e. $f$
-denotes $f(x_1, \ldots, x_2)$. Nodes represent variables and have one incoming
-and two outgoing edges, each of which denotes the variable evaluates to 0 (left)
-or 1 (right), respectively. Whenever the result of $f$ is fixed, an edge points
+denotes $f(x_1, \ldots, x_n)$. Nodes represent variables and have one incoming
+and two outgoing edges, each of which denotes the evaluation of the variable to
+0 (left) or 1 (right). Whenever the result of $f$ is fixed, an edge points
 to one of the constant functions \textbf{0} or \textbf{1}. To evaluate $f$ for a
 given variable assignment, one just follows the path for the respective variable
-values. As soon as the path ends up in a constant, i.e. \textbf{0} or \textbf{1},
-this is the result of the corresponding variable assignment. Akers~\cite{AKERS78}
-already provided some techniques to simplify the BDD representation such as
-combining equivalent nodes.
+values, starting from the root. As soon as the path ends up in a constant, i.e.
+\textbf{0} or \textbf{1}, this is the result of the corresponding variable
+assignment. Akers~\cite{AKERS78} already provided some techniques to simplify the
+BDD representation, such as combining equivalent nodes.
 
 Figure~\ref{subfig:bdd} shows an example of a BDD representing the Boolean function
 $f=(A \land B) \lor (B \land C)$. To simplify the graphs, the diagram style of
-Bryant~\cite{BRYANT92} is reused, i.e. edge labels are skipped. Instead dashed
+Bryant~\cite{BRYANT92} is reused, i.e. edge labels are skipped. Instead, dashed
 and solid lines are used to represent the value of the decision variable to be 0
 and 1, respectively. This diagram style is used throughout this paper.
 
@@ -135,21 +135,21 @@ and 1, respectively. This diagram style is used throughout this paper.
         \includestandalone[height = 3cm]{figs/obdd}
         \label{subfig:obdd}
     }
-    \caption{BDD and OBDD of $f=(A \land B) \lor (B \land C)$.}
+    \caption{BDD and OBDD of $f=(A \land B) \lor (\overline{B} \land C)$.}
     \label{fig:bdd-and-obdd}
 \end{figure}
 
 However, Bryant~\cite{BRYANT86} introduced some restrictions concerning the
-ordering of the so-called \textit{decision variables} represented by the nodes
-of the BDD. Furthermore, Bryant\cite{BRYANT86} was able to derive a reduced
+ordering of the so-called \textit{decision variables}, represented by the nodes
+of the BDD. As a consequence, Bryant\cite{BRYANT86} was able to derive a reduced
 representation of BDDs providing the DAG in a canonical form: the
 \textit{Reduced Ordered Binary Decision Diagram} (\textit{ROBDD}; mostly referred
 to as \textit{OBDD}, even by Bryant himself). In this paper, the terms ROBDD and
 OBDD are used synonymously.
 
-Figure~\ref{subfig:obdd} shows one possible ROBDD representation of
-$f$. The following section covers the details of how
-to derive the OBDD representation from a BDD. \tbr
+Figure~\ref{subfig:obdd} shows one possible ROBDD representation of $f$. The
+following section covers the details on how to derive the OBDD representation
+from a given BDD.
 
 \subsection{From BDDs to OBDDs}
 \label{subsec:from-bdds-to-obdds}
