@@ -119,7 +119,7 @@ assignment. Akers~\cite{AKERS78} already provided some techniques to simplify th
 BDD representation, such as combining equivalent nodes.
 
 Figure~\ref{subfig:bdd} shows an example of a BDD representing the Boolean function
-$f=(A \land B) \lor (B \land C)$. To simplify the graphs, the diagram style of
+$f=(A \land B) \lor (\neg B \land C)$. To simplify the graphs, the diagram style of
 Bryant~\cite{BRYANT92} is reused, i.e. edge labels are skipped. Instead, dashed
 and solid lines are used to represent the value of the decision variable to be 0
 and 1, respectively. This diagram style is used throughout this paper.
@@ -135,7 +135,7 @@ and 1, respectively. This diagram style is used throughout this paper.
         \includestandalone[height = 3cm]{figs/obdd}
         \label{subfig:obdd}
     }
-    \caption{BDD and OBDD of $f=(A \land B) \lor (\overline{B} \land C)$.}
+    \caption{BDD and OBDD of $f=(A \land B) \lor (\neg B \land C)$.}
     \label{fig:bdd-and-obdd}
 \end{figure}
 
