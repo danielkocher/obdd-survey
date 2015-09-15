@@ -1070,15 +1070,15 @@ variable assignment.
 Bit vectors are \textit{sparse} in the sense that the set of bit vectors contains
 much less than all possible $2^n$ bit vectors and the bit vectors themselves
 contain many zero elements. ZBDDs are similar to OBDDs but they use a different
-reduction rule, exploiting the sparseness of the bit vectors. In ZBDDs, nodes can be
-eliminated whenever setting the corresponding variable to 1 yields 0 as result,
+reduction rule, exploiting the sparseness of the bit vectors. In ZBDDs, nodes can
+be eliminated whenever setting the corresponding variable to 1 yields 0 as result,
 which is often the case for sparse bit vectors. This representation proved
 successful to solve some combinatorial problems~\cite{BRYANT95}.
 
 \paragraph*{Binary Expression Diagrams}
 \mbox{} % workaround to get line break after paragraph
 
-In 1997, Andersen and Hulgaard~\cite{ANDERSEN97} proposeded extending OBDDs with
+In 1997, Andersen and Hulgaard~\cite{ANDERSEN97} proposed to extend OBDDs with
 a third type of nodes representing \textit{operators}. The resulting
 representation is referred to as \textit{Binary Expression Diagram}
 (\textit{BED}). Such an operator node $n$ has one attribute $op(n)$, the binary
@@ -1092,46 +1092,47 @@ nodes. For example, the \textit{up-step} operation moves variables up in the BED
 hierarchy, if possible. As an effect, operator nodes are pushed towards the
 terminal nodes and some operator nodes may be evaluated if some of the associated
 expressions are terminal nodes. The BED may be simplified afterwards. These steps
-can be repeated to reduce the BED over and over again, and simplifying some tests,
-e.g. tautology testing. It is also possible to move all variable up in a single
-step. Nevertheless, reducing the BED step-by-step can exploit structural
+can be repeated to reduce the BED over and over again, and thus to simplify some
+tests, e.g. tautology testing. It is also possible to move all variables up in a
+single step. Nevertheless, reducing the BED step-by-step can exploit structural
 information~\cite{ANDERSEN97}.
 
-In contrast to OBDDs, BEDs are \textit{exponentially more succinct} because
-arbitrary circuits can be translated into BEDs. As a consequence, the BED
-representation suffices to solve integer multiplication using a quadratic number
-of nodes~\cite{ANDERSEN97}. 
+In contrast to OBDDs, BEDs are \textit{exponentially more succinct}, and arbitrary
+circuits can be translated into BEDs. As a consequence, the BED representation
+suffices to solve integer multiplication using a quadratic number of
+nodes~\cite{ANDERSEN97}. 
 
 Analogous to OBDDs and FBDDs, OBEDs and FBEDs can be defined, whereas OBEDs are
-OBDDs without operator nodes. The reduction rule of BEDs is similar to the one
+OBDDs without operator nodes. The reduction rules of BEDs are similar to the rules
 of OBDDs but extended with an additional rule for operator nodes. For any operator
-nodes $n$ it has to hold that $lo(n)$ and $hi(n)$ are nonterminals in order to
+node $n$ it has to hold that $lo(n)$ and $hi(n)$ are nonterminals in order to
 guarantee reducedness. Apart from that, before generating a new node, an existence
-check is performed. If there exists an equivalent node, this node is reused.
-Otherwise the new node is created and considered in the next check. However, even
-if a BED is reduced, canonicity is not guaranteed (in contrast to
-OBDDs)~\cite{ANDERSEN97}.
+check is performed. If there exists an equivalent node, this node is recycled.
+Otherwise, the new node is created and considered in the next check. However, in
+contrast to OBDDs, reducedness of BEDs does not imply
+canonicity~\cite{ANDERSEN97}.
 
 Andersen and Hulgaard~\cite{ANDERSEN97} also introduced some checks especially
-for operator nodes in order to reduce the BED-size even further. Moreover a
+for operator nodes in order to reduce the BED-size even further. Moreover, a
 detailed description of how to convert a BED into an equivalent OBDD is provided,
 distinguishing between step-by-step variable moving (denoted as \textit{up\_one})
 and block-wise variable moving (denoted as \textit{up\_all}).
  
 The \textit{up\_one} operation can be implemented with expected runtime of $O(n)$,
-where $n$ denotes the number reachable of nodes from a given node. Nonetheless,
+where $n$ denotes the number of reachable nodes from a given node. Nonetheless,
 because BEDs are exponentially more succinct than OBDDs, the complete
 transformation has an exponential worst-case complexity. Also \textit{up\_all} has
 an exponential worst-case complexity (for the same reason)~\cite{ANDERSEN97}.
 
 Andersen and Hulgaard~\cite{ANDERSEN97} concluded that \textit{up\_all} is a
-memory efficient approach to construct OBDDs in contrast to the OBDD construction
-from scratch, without actually increasing the runtime. \textit{up\_one} is used
-to implement existential quantification and substitution efficiently, having
-linear runtime complexity in the size of the BED. Reconsidering symbolic model
-checking, BEDs can be used to evaluate fixed point computations directly without
-converting it to an OBDD. Moreover, BEDs can perform fixed point computations more
-efficiently because of their succinct representation~\cite{ANDERSEN97}. \tbr
+memory efficient alternative to construct OBDDs compared to the OBDD construction
+from scratch using \textit{Apply}, without actually increasing the runtime.
+\textit{up\_one} is used to implement existential quantification and substitution
+efficiently, having linear runtime complexity in the size of the BED.
+Reconsidering symbolic model checking, BEDs can be used to evaluate fixed point
+computations directly without converting to OBDDs. Moreover, BEDs can perform
+fixed point computations more efficiently because of their succinct
+representation~\cite{ANDERSEN97}.
 
 %\clearpage
 % balance columns on last page
