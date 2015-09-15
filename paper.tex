@@ -46,27 +46,29 @@
 
 \begin{abstract}
 This paper serves as a survey on \textit{ordered binary Decision diagrams}
-(\textit{OBDDs}). It provides an overview of the representation of OBDDs, the
-operations which can be applied efficiently, some aspects when implementing them
-as well as their limitations and how to probably overcome them by using
-alternative representations. No new results or insights are provided. \tbr
+(\textit{OBDDs}). It provides an overview of the OBDD representation, the
+operations which can be applied efficiently on OBDDs and some aspects when it
+comes to implementing OBDD packages. Moreover, their limitations and their
+application in symbolic model checking are outlined and alternative representations
+are presented to tackle these limitations. As this is just a survery, no new
+insights are provided.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
 
-In computer-aided design (CAD) as well as other domains like artificial
+In computer-aided design (CAD) as well as other domains, like artificial
 intelligence or combinatorics, many problems can be formulated as Boolean
-functions. These Boolean functions then can be represented symbolically using the
-\textit{Binary Decision Diagrams} (\textit{BDDs}) introduced by Lee\cite{LEE59}
-and Akers\cite{AKERS78} in 1959 and 1978, respectively.
+functions. These Boolean functions then can be represented symbolically using
+\textit{Binary Decision Diagrams} (\textit{BDDs}), introduced by Lee~\cite{LEE59}
+and Akers~\cite{AKERS78} in 1959 and 1978, respectively.
 
-In 1986 Bryant\cite{BRYANT86} published a paper of strong impact, describing a
-\textit{reduced} and \textit{ordered} class of BDDs, so-called \textit{ROBDDs}
-(\textit{Reduced Ordered} BDDs) but in literature mostly referred to as
+In 1986, Bryant~\cite{BRYANT86} published a paper having strong impact, describing
+a \textit{reduced} and \textit{ordered} class of BDDs, so-called \textit{ROBDDs}
+(\textit{Reduced Ordered} BDDs), but in literature mostly referred to as
 \textit{OBDDs}. OBDDs represent Boolean functions in a \textit{canonical}
 form. This results in a compact form and very efficient tests for some properties,
-e.g. satisfiability or equivalence\cite{BRYANT86}.
+e.g. satisfiability or equivalence~\cite{BRYANT86}.
 
 Bryant also introduced and experimentally evaluated efficient implementation
 techniques for OBDDs in collaboration with Brace and
@@ -76,32 +78,28 @@ Already in the inital paper describing OBDDs, the importance of the variable
 ordering was highlighted. Only if the variable ordering is chosen properly, it
 will result in a small graph (OBDD) and, in turn, in more efficient testing.
 
-Nonetheless representing Boolean functions using OBDDs has some drawbacks. Classes
-of Boolean functions exist for which the size of the graph grows exponentially
+Representing Boolean functions using OBDDs has one drawback. Classes of
+Boolean functions exist for which the size of the graph grows exponentially
 independent of the variable ordering, e.g. integer
 multiplication~\cite{BRYANT86, BRYANT91, WOELFEL01}.
 
 These limitations of OBDDs motivated researchers to introduce heuristics and
 other techniques like \textit{dynamic variable ordering}~\cite{RUDELL93} to solve
 the problem of variable ordering~\cite{BOLLIG96}. Furthermore, alternative
-representations which e.g. relax the ordering~\cite{BRYANT95} or change the
-interpretation of nodes~\cite{BRYANT95, ANDERSEN97} were developed. Such
-representations may be beneficial for some classes of Boolean functions but mostly
-suffer from losing the canonical form and hence the desirable properties OBDDs
-are famous for.
+representations were developed which may be beneficial for some classes of Boolean
+functions but mostly suffer from losing the canonical form and, hence, the desirable
+properties OBDDs are famous for.
 
 This paper serves as survey on symbolic Boolean function manipulation using OBDDs.
 The following section describes the representation of Boolean functions through
 BDDs as well as OBDDs. It also highlights the advantages and disadvantages of the
 OBDD representation. The third section describes operations which can be applied
-to OBDDs efficiently. No source code is provided but those can be looked up in
-the corresponding papers easily (references are provided for each algorithm).
-Section~\ref{sec:implementational-aspects} describes aspects one has to take into
-account when implementing an OBDD package, such as what data structures to use
-or how to deal with the problem of variable ordering. Limitations of the OBDD
-representation are described in the subsequent section. The last section
-discusses alternative representations to possibly overcome the limitations of
-the OBDD representation. \tbr
+to OBDDs efficiently. Section~\ref{sec:implementational-aspects} describes aspects
+one has to take into account when implementing an OBDD package, such as what data
+structures to use or how to deal with the problem of variable ordering.
+In the subsequent sections, limitations of the OBDD representation and their usage
+in symbolic model checking are outlined. The last section discusses alternative
+representations to probably overcome the limitations mentioned before.
 
 \section{Representation Basics}
 \label{sec:representation-basics}
@@ -1074,7 +1072,7 @@ are similar to OBDDs but they use a different reduction rule, exploiting the
 sparse bit vectors. In ZBDDs, nodes can be eliminated whenever setting the
 corresponding variable to 1 yields 0 as result, which is often the case for sparse
 bit vectors. This representation proved successful to solve some combinatorial
-problems~\cite{BRYANT95}. \tbr \newpage
+problems~\cite{BRYANT95}. \tbr %\newpage
 
 \paragraph*{Binary Expression Diagrams}
 \mbox{} % workaround to get line break after paragraph
@@ -1134,7 +1132,7 @@ checking, BEDs can be used to evaluate fixed point computations directly without
 converting it to an OBDD. Moreover, BEDs can perform fixed point computations more
 efficiently because of their succinct representation~\cite{ANDERSEN97}. \tbr
 
-\clearpage
+%\clearpage
 % balance columns on last page
 %\balance
 
