@@ -790,9 +790,9 @@ NP-complete too~\cite{BOLLIG96}.
 
 One specific application of reduced ordered binary decision diagrams is 
 \textit{symbolic model checking}, introduced by Burch et al.~\cite{BURCH90} in
-1990. \textit{Symbolic}, because the state space is not represented explicitly
-but symbolically by utilizing OBDDs to represent $\mu$-Calculus formulas.
-In~\cite{BURCH90}, Burch, Clarke, McMillan, Dill and Hwang derived an efficient
+1990. Symbolic, because the state space is not represented explicitly but
+symbolically by utilizing OBDDs to represent $\mu$-Calculus formulas.
+In~\cite{BURCH90}, Burch, Clarke, McMillan, Dill and Hwang derived efficient
 decision procedures for CTL model checking as well as satisfiability of LTL
 formulas, strong and weak observational equivalence of finite transition systems
 and language containment for finite $\omega$-automata by introducing a new
@@ -807,13 +807,13 @@ does so. Commonly, this is referred to as the
 problem, Burch et al.~\cite{BURCH90} as well as McMillan~\cite{MCMILLAN92}
 proposed to utilize reduced ordered binary decision diagrams to represent the 
 state space symbolically. Although OBDDs cannot avoid a state explosion in general,
-many practically relevant systemes with large state spaces can be
+many practically relevant systems with large state spaces can be
 verified~\cite{BURCH90, MCMILLAN92}. Experiments~\cite{BURCH90} showed that
 symbolic model checking enables to verify models with more than $10^{20}$ states,
 whereas explicit enumeration approaches can only verify models up to $10^6$
 states. 
 
-Burch et al.~\cite{BURCH90} and McMillan~\cite{MCMILLAN92} extend Bryant's OBDD
+Burch et al.~\cite{BURCH90} and McMillan~\cite{MCMILLAN92} extended Bryant's OBDD
 representation~\cite{BRYANT86} by quantification over Boolean variables (QBF) and
 substitution of variable names. The quantification over Boolean variables is
 realized by using Bryant's \textit{Restrict} operation (see
@@ -821,22 +821,21 @@ Section~\ref{sec:operations}). Let $f$ be a QBF formula and $x$ be a Boolean
 variable. The QBF formula $\exists x\left(f\right)$ then is equivalent to
 $f|_{a=0} \lor f|_{a=1}$~\cite{BURCH90}. Substitution of variables, e.g.
 substitution of $x$ by $y$ (denoted $f\langle x\leftarrow y\rangle$), is computed
-using the following equivalence:
+using the following definition:
 \begin{center}
 $
-f\langle x\leftarrow y\rangle \equiv
+f\langle x\leftarrow y\rangle :=
 \exists x\lbrack\left(x \Leftrightarrow y\right) \land f\rbrack
 $
 \end{center}
 
-Before discussing the symbolic model checking algorithms $\text{BDD}_f$ and
-$\text{BDD}_R$, the used $\mu$-Calculus has to be described. For a given finite
-signature $\mathcal{S}$, each symbol is either an individual or a predicate
-variable having positive arity. Burch et al.~\cite{BURCH90} considered two
-syntactic categories, i.e. \textit{formulas} and \textit{relational terms}, having
-the following forms.
+Before discussing the symbolic model checking algorithm, the used $\mu$-Calculus
+has to be defined. For a given finite signature $\mathcal{S}$, each symbol is
+either an individual or a predicate variable having positive arity. Burch et
+al.~\cite{BURCH90} considered two syntactic categories, i.e. \textit{formulas}
+and \textit{relational terms}, having the following forms.
 
-\noindent
+\vskip5pt\noindent
 \textbf{Formulas:}~\cite{BURCH90}
 \begin{enumerate}
     \item{\textbf{True}, \textbf{False}}.
@@ -845,8 +844,8 @@ the following forms.
         variables.
     }
     \item{
-        $\neg f$, $f \lor g$, $\exists z\left( f \right)$; $z\in\mathcal{S}$ is
-        an individual variable, $f$ and $g$ are formulas.
+        $\neg f$, $f_1 \lor f_2$, $\exists z\left( f \right)$; $z\in\mathcal{S}$ is
+        an individual variable, $f_1$ and $f_2$ are formulas.
     }
     \item{
         $P\left(z_1, \ldots, z_n\right)$; $P$ is an $n$-ary relational term and
@@ -926,13 +925,13 @@ these semantics:
     }
 \end{enumerate}
 
-Finally, after defining the $\mu$-Calculus formally, the model checking algorithms
-can be described. They operate on the limited Boolean domain, i.e.
-$D = \lbrace 0, 1 \rbrace$ but Burch et al.~\cite{BURCH90} also described how any
-\textit{finite} domain can be encoded into this limited Boolean domain. This last
-fact generalizes the introduced algorithms to any \textit{finite} domain.
+Finally, after defining the $\mu$-Calculus formally, the model checking algorithm
+can be described, which operates on the limited Boolean domain, i.e.
+$D = \lbrace 0, 1 \rbrace$. However, Burch et al.~\cite{BURCH90} also described
+how any \textit{finite} domain can be encoded into this limited Boolean domain.
+This last fact generalizes the introduced algorithm to any \textit{finite} domain.
 
-They described two function representing the algorithm:
+They described two functions representing the algorithm:
 $\text{BDD}_f \left( f, I_P \right)$ and $\text{BDD}_R \left( R, I_P \right)$,
 where $f$ and $R$ denote a formula and a relational term, respectively. For 
 $\text{BDD}_f$, $I_P$ represents a relational variable interpretation assigning
@@ -942,14 +941,14 @@ A given individual variable interpretation $I_D$ satisfies \newline
 $\text{BDD}_f \left( f, I_P \right)$ iff $f$ is satisfied by $\mathcal{M}$ having
 interpretations $I_P$ and $I_D$. OBDDs in combination with place-holder variables
 $d_1, \ldots, d_n$ are used to represent the values of the relational variables
-$\in I_P$. $d_i$ represents the $i^{th}$ argument of a relation and an $n$-ary
+in $I_P$. $d_i$ represents the $i^{th}$ argument of a relation and an $n$-ary
 relation holds for arguments $y_1, \ldots, y_n$ iff the interpretation
 $\langle d_1 \leftarrow y_1, \ldots, d_n \leftarrow y_n \rangle$ satisfies the
 OBDD.
 
 In essence, $\text{BDD}_f \left( f, I_P \right)$ distinguishes between five cases
 derived from the OBDD semantics and the $\mu$-Calculus, utilizing the graph-based
-algorithms of Bryant~\cite{BRYANT86} (also see Section~\ref{sec:operations}) as
+algorithms of Bryant~\cite{BRYANT86} (see Section~\ref{sec:operations}) as
 well as the $\text{BDD}_R$ function (for applying a relational term $R$) with a
 subsequent substitution of the place-holder variables with the argument variables, 
 i.e. \newline
@@ -1011,9 +1010,9 @@ $\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ and
 $\text{\textbf{EG}} f$. A CTL formula $f$ is \textbf{True} at state $s$ iff
 $R \left( s \right)$ is \textbf{True}. 
 
-$\text{\textbf{EX}} f$ is satisfied for a state $s$ iff a state satisfying $f$
-exists and $R \left( s, t \right)$ holds. In terms of $\mu$-Calculus relational
-terms, $\text{\textbf{EX}} f$ can be formulated as
+$\text{\textbf{EX}} f$ is satisfied for a state $s$ iff a state $t$ satisfying
+$f$ exists and $R \left( s, t \right)$ holds. In terms of $\mu$-Calculus
+relational terms, $\text{\textbf{EX}} f$ can be formulated as
 $\lambda u \lbrack \exists v \left( f(v) \land R \left( u, v \right) \right) \rbrack$~\cite{BURCH90}.
 
 The other two formulas are represented by fixed point characterizations, computed
@@ -1030,9 +1029,9 @@ exists a successor state $t$ satisfying $f$ globally. Hence, the equivalent
 gfp representation is
 $\nu Q \lbrack f \land \text{\textbf{EX}} Q \rbrack$~\cite{BURCH90}.
 
-Utilizing these equivalent representations, one efficient CTL model checking.
-Moreover, Burch, Clarke, McMillan and Dill~\cite{BURCH90-2} described how to use
-these methods to do \textit{fair} CTL model checking. \tbr
+Utilizing these equivalent representations, efficient CTL model checking can be
+done. Moreover, Burch, Clarke, McMillan and Dill~\cite{BURCH90-2} described how
+to use these methods to do \textit{fair} CTL model checking.
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
