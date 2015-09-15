@@ -1022,8 +1022,15 @@ using direct iteration or iterative squaring (see~\cite[p. 433]{BURCH90}).
 $\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ is satisfied for a
 state $s$ if $f_2$ is satisfied by $s$ or $s$ satisfies $f_1$ and $s$ has a
 successor state $t$ such that a path exists starting at $t$ and satisfying
-$f_1 \text{\textbf{U}} f_2$. The $\mu$-Calculus representation is defined by
-$\mu Q \lbrack f_2 \lor \left( f_1 \land \text{\textbf{EX}} Q \right) \rbrack$~\cite{BURCH90}.\tbr
+$f_1 \text{\textbf{U}} f_2$. The $\mu$-Calculus representation (lfp) is defined by
+$\mu Q \lbrack f_2 \lor \left( f_1 \land \text{\textbf{EX}} Q \right) \rbrack$~\cite{BURCH90}.
+
+$\text{\textbf{EG}} f$ is satisfied for a state $s$ if $s$ satisfies $f$ and there
+exists a successor state $t$ satisfying $f$ globally. Hence, the equivalent 
+gfp representation is
+$\nu Q \lbrack f \land \text{\textbf{EX}} Q \rbrack$~\cite{BURCH90}.
+
+\tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
