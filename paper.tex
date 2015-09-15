@@ -948,16 +948,40 @@ relation holds for arguments $y_1, \ldots, y_n$ iff the interpretation
 $\langle d_1 \leftarrow y_1, \ldots, d_n \leftarrow y_n \rangle$ satisfies the
 OBDD.
 
-The complete code of $\text{BDD}_f$ and $\text{BDD}_R$ is listed
-in~\cite[p. 432]{BURCH90}. However, both functions are described briefly in the
-following paragraphs.
-
 In essence, $\text{BDD}_f \left( f, I_P \right)$ distinguishes between five cases
 derived from the OBDD semantics and the $\mu$-Calculus, utilizing the graph-based
 algorithms of Bryant~\cite{BRYANT86} (also see Section~\ref{sec:operations}) as
 well as the $\text{BDD}_R$ function (for applying a relational term $R$) with a
 subsequent substitution of the place-holders with the argument variables, i.e.
 $\langle d_1 \leftarrow x_1, \ldots, d_n \leftarrow x_n \rangle$~\cite{BURCH90}.
+
+The OBDD returned by $\text{BDD}_R \left( R, I_P \right)$ may contain both types
+of variables, the place-holder and the individual variables, because a relational
+term may contain free individual variables. Hence,
+$\text{BDD}_R \left( R, I_P \right)$ is satisfied iff
+$\mathcal{D} \left( R \right) \left( I_P \right) \left( I_D \right)$ holds for
+the $n$-tuple $\langle I_A \left( d_1 \right), \ldots, I_A \left( d_n \right) \rangle$
+for given $I_D$ and $I_A$, representing the interpretations for individual and
+place-holder variables, respectively. 
+
+$\text{BDD}_R \left( R, I_P \right)$ distinguishes three cases:
+\begin{enumerate}
+    \item{If $R$ is a relational variable, $I_P \left( R \right)$ is returned.}
+    \item{
+        If $R$ is a $\lambda$-abstraction, an OBDD with substituted variables is
+        returned, i.e. $\langle x_1 \leftarrow d_1, \ldots, x_n \leftarrow d_n \rangle$.
+    }
+    \item{
+        If $R$ is fixed point computation, a helper function is called. This
+        helper function computes the fixed point by a series of approximations
+        $T_1, \ldots, T_k$, starting from an empty relation and terminating as
+        soon as $T_{i+1} = T_i$, which can be tested easily using OBDD because
+        equivalence testing can be done in constant time.
+    }
+\end{enumerate}
+
+The complete code of $\text{BDD}_f$ and $\text{BDD}_R$ is listed
+in~\cite[p. 432]{BURCH90}.
 
 \tbr
 
