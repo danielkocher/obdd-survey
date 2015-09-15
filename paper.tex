@@ -1106,13 +1106,36 @@ Analogous to OBDDs and FDDs, OBEDs and FBEDs can be defined, whereas OBEDs are
 OBDDs without operator nodes. The reduction rule of BEDs is similar to the one
 of OBDDs but extended with an additional rule for operator nodes. For any operator
 nodes $n$ it has to hold that $lo(n)$ and $hi(n)$ are nonterminals in order to
-guarantee reducedness. However, even if a BED is reduced, canonicity is not
-guaranteed (in contrast to OBDDs).
+guarantee reducedness. Apart from that, before generating a new node, an existence
+check is performed. If there exists an equivalent node, this node is reused.
+Otherwise the new node is created and considered in the next check. However, even
+if a BED is reduced, canonicity is not guaranteed (in contrast to
+OBDDs)~\cite{ANDERSEN97}.
 
-\tbr
+Andersen and Hulgaard~\cite{ANDERSEN97} also introduced some checks especially
+for operator nodes in order to reduce the BED-size even further. Moreover a
+detailed description of how to convert a BED into an equivalent OBDD is provided,
+distinguishing between step-by-step variable moving (denoted as \textit{up\_one})
+and block-wise variable moving (denoted as \textit{up\_all}).
+ 
+The \textit{up\_one} operation can be implemented with expected runtime of $O(n)$,
+where $n$ denotes the number reachable of nodes from a given node. Nonetheless,
+because BEDs are exponentially more succinct than OBDDs, the complete
+transformation has an exponential worst-case complexity. Also \textit{up\_all} has
+an exponential worst-case complexity (for the same reason)~\cite{ANDERSEN97}.
 
+Andersen and Hulgaard~\cite{ANDERSEN97} concluded that \textit{up\_all} is a
+memory efficient approach to construct OBDDs in contrast to the OBDD construction
+from scratch, without actually increasing the runtime. \textit{up\_one} is used
+to implement existential quantification and substitution efficiently, having
+linear runtime complexity in the size of the BED. Reconsidering symbolic model
+checking, BEDs can be used to evaluate fixed point computations directly without
+converting it to an OBDD. Moreover, BEDs can perform fixed point computations more
+efficiently because of their succinct representation~\cite{ANDERSEN97}. \tbr
+
+\clearpage
 % balance columns on last page
-\balance
+%\balance
 
 \bibliographystyle{abbrv}
 \bibliography{paper}
