@@ -757,33 +757,33 @@ Hence, the complexity of an OBDD representing integer multiplication is
 exponential in $n$, where $n$ denotes the word size of the multiplied integers.
 One can read the full proof in~\cite{BRYANT91}.
 
-Nevertheless, researches put some effort in improving this lower bound. In 2001,
-Woelfel~\cite{WOELFEL01} published a new bound lower bound as well as a first 
-nontrivial upper bound for the size of OBDDs representing $n$-bit integer
-multiplication by utilizing the concept of \textit{universal hashing}. Therefore,
-he utilized a universal family of hash functions to improve the exponential lower
-bound on the OBDD-size of integer multiplication to
-$2^{\lfloor\frac{n}{2}\rfloor}/96$. Moreover, Woelfel~\cite{WOELFEL01} proved
-the upper bound for the OBDD-size of computing the middle bit of an $n$-bit
-multiplication to be $7/3 \cdot 2^{\frac{4 \cdot n}{3}}$.
+Nevertheless, researchers put some effort in improving this lower bound. In 2001,
+Woelfel~\cite{WOELFEL01} published a new lower bound as well as a first nontrivial
+upper bound for the size of OBDDs representing $n$-bit integer multiplication by
+using the concept of \textit{universal hashing}. Therefore, he utilized a
+universal family of hash functions to improve the exponential lower bound on the
+OBDD-size of integer multiplication to $2^{\lfloor n/2 \rfloor}/96$.
+Moreover, Woelfel~\cite{WOELFEL01} proved the upper bound for the OBDD-size of
+computing the middle bit of an $n$-bit multiplication to be
+$7/3 \cdot 2^{\left(4 \cdot n \right) / 3}$.
 
-Nevertheless, all lower bounds for $n$-bit integer multiplication are exponential
+However, both lower bounds for $n$-bit integer multiplication are exponential
 in the number of nodes. Especially because of the high practical relevance of
-$n$-bit integer multiplication this is one of the main drawbacks of the OBDD
+$n$-bit integer multiplication, this is one of the main drawbacks of the OBDD
 representation~\cite{BRYANT86, BRYANT91, WOELFEL01}.
 
-Another topic researchers put much effort into was the variable ordering problem.
-Section~\ref{subsec:dynamic-variable-ordering} already described one possible
+Another topic tackled by some research teams was the variable ordering problem.
+Section~\ref{subsec:dynamic-variable-ordering} already outlined one possible
 approach to this problem but there are many other approaches such as heuristics
 and simulated annealing algorithms~\cite{BOLLIG96}.
 
-Bollig and Wegener~\cite{BOLLIG96} studied the complexity of improving the
-variable ordering. They investigated this problem by analyzing the following
-problem: Given an OBDD representing $f$ and a size bound $s$. Does an OBDD exist,
-also representing $f$ and respecting an arbitrary variable ordering, having at
-most $s$ nodes? "Unfortunately", they were able to prove this problem to be 
-NP-complete. Hence, improving the variable ordering of OBDDs is
-NP-complete~\cite{BOLLIG96}. \tbr
+Consequently, Bollig and Wegener~\cite{BOLLIG96} studied the complexity of
+improving the variable ordering. They investigated this problem by analyzing the
+following problem: Given an OBDD representing $f$ and a size bound $s$. Does an
+OBDD exist, also representing $f$ and respecting an arbitrary variable ordering,
+having at most $s$ nodes? "Unfortunately", they were able to prove this problem
+to be NP-complete. Hence, improving the variable ordering of OBDDs is
+NP-complete too~\cite{BOLLIG96}.
 
 \section{Symbolic Model Checking}
 \label{sec:symbolic-model-checking}
