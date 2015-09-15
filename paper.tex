@@ -1136,9 +1136,14 @@ representation~\cite{ANDERSEN97}.
 
 %\clearpage
 % balance columns on last page
-%\balance
+\balance
 
 \bibliographystyle{abbrv}
 \bibliography{paper}
+
+% short hack to beautify last page
+\foreach \x in {1, ..., 6}{
+    \vphantom{1} \par
+}
 
 \end{document}
