@@ -948,6 +948,17 @@ relation holds for arguments $y_1, \ldots, y_n$ iff the interpretation
 $\langle d_1 \leftarrow y_1, \ldots, d_n \leftarrow y_n \rangle$ satisfies the
 OBDD.
 
+The complete code of $\text{BDD}_f$ and $\text{BDD}_R$ is listed
+in~\cite[p. 432]{BURCH90}. However, both functions are described briefly in the
+following paragraphs.
+
+In essence, $\text{BDD}_f \left( f, I_P \right)$ distinguishes between five cases
+derived from the OBDD semantics and the $\mu$-Calculus, utilizing the graph-based
+algorithms of Bryant~\cite{BRYANT86} (also see Section~\ref{sec:operations}) as
+well as the $\text{BDD}_R$ function (for applying a relational term $R$) with a
+subsequent substitution of the place-holders with the argument variables, i.e.
+$\langle d_1 \leftarrow x_1, \ldots, d_n \leftarrow x_n \rangle$~\cite{BURCH90}.
+
 \tbr
 
 \section{Alternative Representations}
