@@ -1014,9 +1014,16 @@ $R \left( s \right)$ is \textbf{True}.
 $\text{\textbf{EX}} f$ is satisfied for a state $s$ iff a state satisfying $f$
 exists and $R \left( s, t \right)$ holds. In terms of $\mu$-Calculus relational
 terms, $\text{\textbf{EX}} f$ can be formulated as
-$\lambda u \lbrack \exists v \left( f(v) \land R \left( u, v \right) \right) \rbrack$.
+$\lambda u \lbrack \exists v \left( f(v) \land R \left( u, v \right) \right) \rbrack$~\cite{BURCH90}.
 
-\tbr
+The other two formulas are represented by fixed point characterizations, computed
+using direct iteration or iterative squaring (see~\cite[p. 433]{BURCH90}).
+
+$\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ is satisfied for a
+state $s$ if $f_2$ is satisfied by $s$ or $s$ satisfies $f_1$ and $s$ has a
+successor state $t$ such that a path exists starting at $t$ and satisfying
+$f_1 \text{\textbf{U}} f_2$. The $\mu$-Calculus representation is defined by
+$\mu Q \lbrack f_2 \lor \left( f_1 \land \text{\textbf{EX}} Q \right) \rbrack$~\cite{BURCH90}.\tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
