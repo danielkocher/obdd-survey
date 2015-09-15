@@ -1083,7 +1083,8 @@ a third type of nodes representing \textit{operators}. The resulting
 representation is referred to as \textit{Binary Expression Diagram}
 (\textit{BED}). Such an operator node $n$ has one attribute $op(n)$, the binary
 Boolean operator, and, like nonterminal nodes, two children $lo(n)$ and $hi(n)$.
-Operator nodes represent their corresponding Boolean connectives in the BED graph.
+Operator nodes represent their corresponding Boolean connectives in the BED
+graph~\cite{ANDERSEN97}.
 
 Just like OBDDs, BEDs share equivalent Boolean subexpressions. Furthermore, BEDs
 have their own set of manipulating operations, especially because of the operator
@@ -1094,7 +1095,12 @@ expressions are terminal nodes. The BED may be simplified afterwards. These step
 can be repeated to reduce the BED over and over again, and simplifying some tests,
 e.g. tautology testing. It is also possible to move all variable up in a single
 step. Nevertheless, reducing the BED step-by-step can exploit structural
-information.
+information~\cite{ANDERSEN97}.
+
+In contrast to OBDDs, BEDs are \textit{exponentially more succinct} because
+arbitrary circuits can be translated into BEDs. As a consequence, the BED
+representation suffices to solve integer multiplication using a quadratic number
+of nodes~\cite{ANDERSEN97}. 
 
 \tbr
 
