@@ -593,13 +593,13 @@ at very low runtime costs, i.e. $3-7\%$ of the total runtime.
 \label{subsec:dynamic-variable-ordering}
 
 For an OBDD package it is desirable to provide the possibility to automatically 
-choose a good, though not optimal variable order for arbitrary functions. Of
+choose a good, though not optimal, variable ordering for arbitrary functions. Of
 course, there exist heuristics to order variables before processing but
 Rudell~\cite{RUDELL93} proposed to integrate the determination and maintainance
-of the variable order into the OBDD package itself. This approach to the variable
+of the variable ordering into the OBDD package itself. This approach to the variable
 ordering problem is called \textit{dynamic variable ordering} and increases the
-robustness of an OBDD package by removing the necessity of choosing a proper
-variable ordering beforehand and thus running the risk of spacing out.
+robustness of an OBDD package by removing the necessity to choose a proper 
+variable ordering beforehand and thus, running the risk of spacing out.
 
 Dynamic variable ordering executes the \textit{sifting} algorithm, also proposed
 by Rudell~\cite{RUDELL93}, to reorder the variables periodically and so minimize
@@ -609,9 +609,9 @@ enough to actually solve them, i.e. heuristics were able to solve 24 out of 35
 large circuits from the IWLS'91 and dynamic variable ordering using the sift
 algorithm was able to solve 33 out of these 35 large circuits~\cite{RUDELL93}.
 
-Periodically means, that a reordering is not performed by user requests but at
-appropriate points, determined by the OBDD package itself and so eliminate any
-user responsibility.
+Periodically means, that a reordering is not performed on user requests but at
+appropriate points of time, determined by the OBDD package itself and so
+eliminate any user responsibility.
 
 The core forms an efficient variable swap implementation, i.e. keep the changes
 in the OBDD as local as possible when swapping two adjacent variables $x$ and
@@ -646,7 +646,7 @@ The sifting algorithm therefore uses a brute-force enumeration strategy to find
 the optimal variable position. It starts by swapping the processed variable $x$
 downwards one level at a time, i.e. swapping it with its successor variable, which
 is located on the layer below in the OBDD. This is done until $x$ is the next to
-last variable in the OBDD. Then, this is done in the other way round, i.e. swapping
+last variable in the OBDD. Then, this is done the other way round, i.e. swapping
 $x$ with its predecessor variable until $x$ becomes the top variable of the OBDD.
 While proceeding, the ideal position is memorized and after $x$ became the top
 variable, $x$ is moved to this ideal position by, again, swapping levels one by
@@ -654,8 +654,8 @@ one~\cite{RUDELL93}. Figure~\ref{fig:sifting-algorithm} shows this procedure
 applied to an example, requiring a total of 9 steps for 5 possible positions. The
 first phase, determining the ideal position by swapping two variables at a time,
 is marked red, i.e. the two swapped variables are marked. The variable pairs
-swapped during the second phase, i.e. moving the $x$ to its ideal position (4),
-are marked green. 
+swapped during the second phase, when moving $x$ to its ideal position (4), are
+marked green. 
 
 \begin{figure}
     \centering
@@ -690,34 +690,34 @@ are marked green.
 
 This procedure could be refined to choose the direction before actually start
 swapping the processed variable. As a result, the variable is always swapped
-towards the closer variable position first.
+towards the closer end (top or bottom) first.
 
 To obtain a proper variable ordering, variables are sorted descending in the number
 of nodes per OBDD level. Then, the ideal position is computed for each variable
 utilizing the approach described above. The sifting algorithm has one big advantage
-over other similar algorithms, like \textit{window permutation algorithm}, namely
+over other similar algorithms, like \textit{window permutation algorithm}, namely,
 variables can move many levels because all positions are evaluated, regardless of
 the temporary size of the OBDD~\cite{RUDELL93}.
 
 According to Rudell~\cite{RUDELL93}, $O(n^2)$ swaps of adjacent levels are
-necessary. Moreover, each swap has a complexity proportional to the with of the
+necessary. Moreover, each swap has a complexity proportional to the width of the
 OBDD. Thus, Rudell~\cite{RUDELL93} advises to terminate whenever the OBDD doubles
-its size. On the one hand, in contrast to heuristics and similar approaches, i.e.
+its size. On the one hand, in contrast to heuristics and similar approaches, e.g.
 the window permutation algorithm, the dynamic variable ordering using the sifting
 algorithm has a significantly higher runtime. On the other hand, dynamic variable
 ordering using the sifting algorithm was able to complete operations which were
-not completed without it. Furthermore, the resulting OBDDs were significantly
-smaller~\cite{RUDELL93}.
+not completed using different approaches. Furthermore, the resulting OBDDs were
+significantly smaller~\cite{RUDELL93}.
 
 Unfortunately, dynamic variable ordering has some bad consequences as well, namely
 \textit{negate-input-} and \textit{negate-else-edges} cannot be used without
-loosing the (desired) local complexity of variable swapping.
+loosing the (desirable) local complexity of variable swapping.
 
 However, dynamic variable ordering is a good practice to obtain minimized OBDDs.
 For example, Figure~\ref{fig:min-obdd} shows the minimized, and thus optimal, OBDD
-representation of \newline $f=\left(A \land B\right) \lor \left(B \land C\right)$
-which, compared to the OBDD shown in Figure~\ref{subfig:obdd}, consists of less
-nodes.
+representation of \newline
+$f=\left(A \land B\right) \lor \left(\neg B \land C\right)$ which, compared to
+the OBDD shown in Figure~\ref{subfig:obdd}, consists of less nodes.
 
 \begin{figure}[ht]
     \centering
@@ -725,7 +725,6 @@ nodes.
     \caption{Minimized OBDD (optimal).}
     \label{fig:min-obdd}
 \end{figure}
-\tbr
 
 \section{Limitations}
 \label{sec:limitations}
