@@ -1073,12 +1073,18 @@ are similar to OBDDs but they use a different reduction rule, exploiting the
 sparse bit vectors. In ZBDDs, nodes can be eliminated whenever setting the
 corresponding variable to 1 yields 0 as result, which is often the case for sparse
 bit vectors. This representation proved successful to solve some combinatorial
-problems~\cite{BRYANT95}. \tbr
+problems~\cite{BRYANT95}. \tbr \newpage
 
 \paragraph*{Binary Expression Diagrams}
 \mbox{} % workaround to get line break after paragraph
 
-\tbd
+In 1997, Andersen and Hulgaard~\cite{ANDERSEN97} proposeded extending OBDDs with
+a third type of nodes representing \textit{operators}. The resulting
+representation is referred to as \textit{Binary Expression Diagram}
+(\textit{BED}). Such an operator node $n$ has one attribute $op(n)$, the binary
+Boolean operator, and, like nonterminal nodes, two children $lo(n)$ and $hi(n)$.
+Operator nodes represent their corresponding Boolean connectives in the BED graph.
+ \tbr
 
 % balance columns on last page
 \balance
