@@ -830,8 +830,8 @@ f\langle x\leftarrow y\rangle \equiv
 $
 \end{center}
 
-Before discussing the symbolic model checking algorithms \texttt{BDD}$_f$ and
-\texttt{BDD}$_R$, the used $\mu$-Calculus has to be described. For a given finite
+Before discussing the symbolic model checking algorithms $\text{BDD}_f$ and
+$\text{BDD}_R$, the used $\mu$-Calculus has to be described. For a given finite
 signature $\mathcal{S}$, each symbol is either an individual or a predicate
 variable having positive arity. Burch et al.~\cite{BURCH90} considered two
 syntactic categories, i.e. \textit{formulas} and \textit{relational terms}, having
@@ -931,7 +931,24 @@ Finally, after defining the $\mu$-Calculus formally, the model checking algorith
 can be described. They operate on the limited Boolean domain, i.e.
 $D = \lbrace 0, 1 \rbrace$ but Burch et al.~\cite{BURCH90} also described how any
 \textit{finite} domain can be encoded into this limited Boolean domain. This last
-fact generalizes the introduced algorithms to any \textit{finite} domain. \tbr
+fact generalizes the introduced algorithms to any \textit{finite} domain.
+
+They described two function representing the algorithm:
+$\text{BDD}_f \left( f, I_P \right)$ and $\text{BDD}_R \left( R, I_P \right)$,
+where $f$ and $R$ denote a formula and a relational term, respectively. For 
+$\text{BDD}_f$, $I_P$ represents a relational variable interpretation assigning
+values to free relational variables in $f$~\cite{BURCH90}.
+
+A given individual variable interpretation $I_D$ satisfies \newline
+$\text{BDD}_f \left( f, I_P \right)$ iff $f$ is satisfied by $\mathcal{M}$ having
+interpretations $I_P$ and $I_D$. OBDDs in combination with place-holder variables
+$d_1, \ldots, d_n$ are used to represent the values of the relational variables
+$\in I_P$. $d_i$ represents the $i^{th}$ argument of a relation and an $n$-ary
+relation holds for arguments $y_1, \ldots, y_n$ iff the interpretation
+$\langle d_1 \leftarrow y_1, \ldots, d_n \leftarrow y_n \rangle$ satisfies the
+OBDD.
+
+\tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
