@@ -557,14 +557,14 @@ intermediate nodes.
 
 The first OBDD package containing kind of a garbage collection was the one
 introduced by Brace, Bryant and Rudell~\cite{BRACE90}. The garbage collection was
-based upon the reference counting technique, i.e. every node of the OBDD had a
+based upon the reference counting technique, i.e. every node of the OBDD has its own
 reference count. This reference count represents two kinds of references, (1)
 the number of other nodes and (2) the number of formulas referencing it, but does
 not take references from the unique- and computed-table into account.
 
-Today, garbage collecion is a well-known topic. It is used to free up unnecessary
-allocated or unused memory. To accomplish this, the garbage collection has to know
-about which parts of the memory are \textit{dead} and thus can be freed. A node
+Today, garbage collecion is a well-known topic. It is used to free memory of
+objects that are no longer in use. To accomplish this, the garbage collection has
+to know which parts of the memory are \textit{dead} and thus can be freed. A node
 of an OBDD is called \textit{dead} if the reference count of it is equal to zero.
 The reference count of a node $x$ is decremented every time a corresponding
 formula is freed. If the reference count of $x$ reaches zero, the reference counts
@@ -577,17 +577,17 @@ propagates the reclaim operation to $lo(x)$ and $hi(x)$,
 respectively~\cite{BRACE90}.
 
 The garbage collection is executed whenever the load factor (the ratio between
-number of keys stored and number of available bins) exceeds 4 after an insertion
+number of stored keys and number of available bins) exceeds 4 after an insertion,
 and $10\%$ of all OBDD nodes are dead. A garbage collection run deletes all entries
 in the computed-table referencing dead nodes, and frees all dead nodes. The sizes
 of computed- as well as unique-table are increased if the garbage collection does
 not find enough dead nodes. Another event invoking the garbage collection is the
 memory overflow of computed- and unique-table, although, the $10\%$-threshold of
-dead nodes is used again. In any other case, the garbage collection gives up (and,
+dead nodes is used here again. In any other case, the garbage collection gives up (and,
 of course, frees all intermediate nodes)~\cite{BRACE90}.
 
 As stated by Brace et al.~\cite{BRACE90}, this provides effective memory usage
-at very low run-time costs, i.e. $3-7\%$ of the total runtime. \tbr
+at very low runtime costs, i.e. $3-7\%$ of the total runtime.
 
 \subsection{Dynamic Variable Ordering}
 \label{subsec:dynamic-variable-ordering}
