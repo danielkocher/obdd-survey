@@ -991,7 +991,7 @@ propositions $AP$
     \item{$p \in AP$ is a CTL formula.}
     \item{
         Given two CTL formulas $f_1$ and $f_2$, also $\neg f_1$, $f_1 \land f_2$,
-        $\text{\textbf{EX}} f$,
+        $\text{\textbf{EX}} f_1$,
         $\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ and
         $\text{\textbf{EG}} f_1$ are CTL formulas.
     }
@@ -1004,6 +1004,17 @@ of initial states, $R \subseteq \mathcal{S} \times \mathcal{S}$ is the transitio
 relation and $L: \mathcal{S} \rightarrow 2^{AP}$ is a labelling function. An
 infinite sequence of states $\pi = s_0s_1s_2\ldots$ is called \textit{path} if
 $\forall i \in \mathbb{N}.\left( s_i, s_{i+1} \right) \in R$.
+
+Now, equivalent $\mu$-Calculus relational terms need to be formulated for
+$\text{\textbf{EX}} f$,
+$\text{\textbf{E}} \lbrack f_1 \text{\textbf{U}} f_2 \rbrack$ and
+$\text{\textbf{EG}} f$. A CTL formula $f$ is \textbf{True} at state $s$ iff
+$R \left( s \right)$ is \textbf{True}. 
+
+$\text{\textbf{EX}} f$ is satisfied for a state $s$ iff a state satisfying $f$
+exists and $R \left( s, t \right)$ holds. In terms of $\mu$-Calculus relational
+terms, $\text{\textbf{EX}} f$ can be formulated as
+$\lambda u \lbrack \exists v \left( f(v) \land R \left( u, v \right) \right) \rbrack$.
 
 \tbr
 
