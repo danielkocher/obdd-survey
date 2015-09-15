@@ -455,7 +455,7 @@ ordering problem.
 
 Hash tables maintain \textit{key}-\textit{value}-pairs, returning the associated
 value for a given key in (amortized) constant time. Collisions, i.e. equivalent
-value for different keys, are resolved by chaining all associated values in a 
+values for different keys, are resolved by chaining all associated values in a 
 linked list~\cite{BRACE90}.
 
 This is especially useful to refine \textit{Apply} in order to guarantee the time
@@ -465,21 +465,21 @@ making multiple recursive calls to equivalent pairs of nodes and thus avoids
 computing equivalent subgraphs multiple times. Therefore, before computing a
 subgraph, \textit{Apply} checks whether an entry is present for the given pair
 of nodes. If so, the associated value $m$ is used instead of computing the
-subgraph~\cite{BRYANT86, BRYANT92}.
+subgraph again~\cite{BRYANT86, BRYANT92}.
 
 Moreover, hash tables are useful to generate a reduced graph directly from some
 operations by maintaing a hash table associating triples
 ($var(n)$, $lo(n)$, $hi(n)$) with a single nonterminal node $n$. This is done for
 each nonterminal node $n$ generated while executing the
 operation~\cite{BRYANT92}. This is also referred to as
-\textit{unique-table}~\cite{BRACE90} imposes the canonical form of an OBDD. If a
+\textit{unique-table}~\cite{BRACE90} and imposes the canonical form of an OBDD. If a
 new node is generated, a corresponding entry is created in the unique-table.
 
-There exists a special version of hash tables, so-called
-\textit{hash-based caches}, which do not resolve collisions, i.e. overwrite
-existing entries, and issue a cache miss if a looked up element is not found.
-As will be seen, \textit{Hash-based caches} are useful to provide an efficient
-implementation of the $ITE$ operator. \tbr
+There exists a special type of hash tables, so-called
+\textit{hash-based caches}, which do not resolve collisions, i.e. they overwrite
+existing entries and issue a \textit{cache miss} if a looked up element is not
+found. As will be seen, \textit{hash-based caches} are useful to provide an
+efficient implementation of the $ITE$ operator. \tbr
 
 \paragraph*{Graph Representation}
 \mbox{} % workaround to get line break after paragraph
@@ -488,16 +488,16 @@ To reduce the number of nodes of an OBDD, one can use \textit{complement edges}.
 A complement edge is an edge holding a single bit to indicate complementation.
 Hence, when $\overline{f}$ needs to be represented and a node $f$ is already
 present, a complement edge can be used to connect $f$ and thus avoid
-constructing the intermediate node $\overline{f}$. Also one of the two terminal
-nodes (e.g. \textbf{1}) can be removed by just using a complement edge to connect
-the other one (e.g. \textbf{0})~\cite{BRACE90}.
+constructing the intermediate node $\overline{f}$. Using this, one of the two
+terminal nodes (e.g. \textbf{1}) can be removed too, by using a complement edge
+to connect the other one (e.g. \textbf{0})~\cite{BRACE90}.
 
 Brace et al.~\cite{BRACE90} identified four functionally equivalent pairs of
 functions to be used for complement edges in order to maintain the canonical form.
 Let $x$ be the node having $lo(x)$ and $hi(x)$ on its outgoing 0- and 1-edge,
 respectively. Moreover, let $in(x)$ be the (one) incoming edge of node $x$ and
-$\overline{c}$ the complement of $c$. Then, the following table sums up the
-four pairs identified by Brace et al.~\cite{BRACE90}.
+$\overline{c}$ be the complement of $c$. In the following, these four pairs,
+identified by Brace et al.~\cite{BRACE90}, are summarized:
 
 \begin{center}
     \begin{tabular}{lll}
@@ -508,18 +508,18 @@ four pairs identified by Brace et al.~\cite{BRACE90}.
     \end{tabular}
 \end{center}
 
-Also, the 1-edge of each node must always be a regular one to guarantee a
+Also, the 1-edge of each node must always be a regular one to guarantee the
 canonical form.
 
 Implementing complement edges enables one to compute the complement and identify
 complement functions in constant time (because $f$ and $\overline{f}$ use the same
-node). According to Brace et al.~\cite{BRACE90} this reduces the total runtime
-to form the OBBDD by almost a factor of 2 (for 12 examples).
+node). According to Brace et al.~\cite{BRACE90}, this technique reduces the total
+runtime to form the OBDD by almost a factor of 2 (for 12 examples).
 
 Another refinement to the graph representation, also proposed by Brace et
 al.~\cite{BRACE90}, is to integrate the unique-table into the graph representation,
 i.e. linking the collision chain of each node to the corresponding unique-table
-entry, to improve memory usage. \tbr
+entry, in order to improve memory usage.
 
 \subsection{ITE Operator}
 \label{subsec:ite-operator}
