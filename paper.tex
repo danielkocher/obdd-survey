@@ -1048,7 +1048,15 @@ Hulgaard~\cite{ANDERSEN97}. \tbr
 \paragraph*{Free BDDs}
 \mbox{} % workaround to get line break after paragraph
 
-\tbd
+Although the variable ordering problem is well-studied, OBDDs have some severe
+limitations for some classes of Boolean functions, regardless of the variable
+ordering chosen, e.g. integer multiplication (see Section~\ref{sec:limitations}).
+One way researchers tried to overcome this issue is relaxing the variable ordering
+requirement. \textit{Free BDDs} (\textit{FDDs}) is one proposed approach. FDDs
+do not require the variables in the BDD to be ordered but, instead, require that
+each variable only occurs once along any path (starting from the root node).
+Hence, FDDS are also referred to as \textit{1-time branching programs}. Moreover,
+FDDs have the same desirable algorithmic properties as OBDDs~\cite{BRYANT95}. \tbr
 
 \paragraph*{Zero-Suppressed BDDs}
 \mbox{} % workaround to get line break after paragraph
