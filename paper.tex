@@ -887,9 +887,47 @@ and $n$-ary relational terms to elements of
 $\left( I_P \rightarrow \left( I_D \rightarrow 2^{D^n} \right) \right)$
 \end{center}.
 
-\tbr
+Burch et al.~\cite{BURCH90} then defined $\mathcal{D}$ inductively on formulas
+and relational terms. For a structure $\mathcal{M}$ and a formula $f$,
+$\mathcal{M}$ satisfies $f$, written as $\mathcal{M} \models f$, according to
+these semantics:
+\begin{enumerate}
+    \item{
+        $\mathcal{D} \left( z_1 = z_2 \right) \left( I_P \right) \left( I_D \right) :=
+        \left( I_D \left( z_1 \right) = I_D \left( z_2 \right) \right)$
+    }
+    \item{
+        $\mathcal{D} \left( \neg f_1 \right) \left( I_P \right) \left( I_D \right) :=
+        \neg \left( \mathcal{D} \left( f_1 \right) \left( I_P \right) \left( I_D \right) \right)$
+    }
+    \item{
+        $\mathcal{D} \left( f_1 \lor f_2 \right) \left( I_P \right) \left( I_D \right) := \newline
+        \mathcal{D} \left( f_1 \right) \left( I_P \right) \left( I_D \right) \lor\;\mathcal{D} \left( f_2 \right) \left( I_P \right) \left( I_D \right)$
+    }
+    \item{
+        $\mathcal{D} \left( \exists z \left( f_1 \right) \right) \left( I_P \right) \left( I_D \right) := \newline
+        \exists e \in D . \left( \mathcal{D} \left( f_1 \right) \left( I_P \right) \left( I_D \langle z \leftarrow e \rangle \right) \right)$
+    }
+    \item{
+        $\mathcal{D} \left( P\left( z_1, \ldots, z_n \right) \right) := \newline
+        \langle I_D \left( z_1 \right), \ldots, I_D \left( z_n \right) \rangle \in \mathcal{D} \left( P \right) \left( I_P \right) \left( I_D \right)$
+    }
+    \item{
+        $\mathcal{D} \left( Z \right) \left( I_P \right) \left( I_D \right) :=
+        I_P \left( Z \right)$
+    }
+    \item{
+        $\mathcal{D} \left( \lambda z_1, \ldots, z_n \left( f \right) \right) \left( I_P \right) \left( I_D \right) := \newline
+        \lbrace \langle e_1, \ldots, e_n \rangle : \mathcal{D} \left( f \right) \left( I_P \right) \left( I_D \langle z_1 \leftarrow e_1, \ldots, z_n \leftarrow e_n \rangle \right) \rbrace$
+    }
+    \item{
+        $\mathcal{D} \left( \mu Z \left( P \right) \right) :=
+        \text{lfp}\;\lambda Q \in 2^{D^n} . \left( \mathcal{D} \left( P \right) \left( I_P \langle Z \leftarrow Q \rangle \right) \left( I_D \right) \right)$,
+        where lfp is the least fixed point w.r.t. the inclusion ordering.
+    }
+\end{enumerate}
 
-
+ \tbr
 
 \section{Alternative Representations}
 \label{sec:alternative-representations}
